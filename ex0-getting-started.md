@@ -26,6 +26,20 @@ Install [minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
 
 Afficher [Kubernetes Dashboard](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/.) avec le browser
 
+Si le bouton Skip n'est pas affiché dans la mire de login:
+* Stopper le proxy.
+* Vérifier que la configuration n'a pas l'option *enable-skip-login*.
+* Patcher la configuration du dashboard.
+* Vérifier que l'option a été rajoutée.
+* Relancer le proxy.
+
+    
+    $ kubectl -n kube-system get deployment kubernetes-dashboard --output yaml | grep enable-skip-login
+    $ kubectl -n kube-system patch deployment kubernetes-dashboard --patch "$(cat patch-kubernetes-dashboard-deployment.yaml)"
+    $ kubectl -n kube-system get deployment kubernetes-dashboard --output yaml | grep enable-skip-login
+    $ kubectl proxy
+
+
 > Voir [kubernetes/dashboard](https://github.com/kubernetes/dashboard) pour plus d'instructions
 
 ## Installer Helm ctl
