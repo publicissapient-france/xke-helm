@@ -50,6 +50,7 @@ Afficher [Kubernetes Dashboard](http://localhost:8001/api/v1/namespaces/kube-sys
 </p>
 </details>
 
+
 > Voir [kubernetes/dashboard](https://github.com/kubernetes/dashboard) pour plus d'instructions
 
 ## Installer Helm CTL
@@ -66,7 +67,7 @@ Voir [the installation guide](https://helm.sh/docs/using_helm/#installing-helm)
 
 ## Initialize Helm and Install Tiller
 
-Installer tiller dans le clusteur Kubernetes vu avec `$ kubectl config current-context` :
+Installer tiller dans le clusteur Kubernetes :
 
 	$ helm init
 
