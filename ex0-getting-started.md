@@ -16,7 +16,7 @@ Installer (docker)[https://docs.docker.com/install/linux/docker-ce/ubuntu]
 
 Activer le kubernetes dans "docker for mac" :
 <p>
-<img src="img/kube-for-mac.png" height="200" width="200">
+<img src="img/kube-for-mac.png" height="200">
 </p>
 
 **Linux**
