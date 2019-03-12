@@ -14,7 +14,7 @@ Activer le kubernetes dans "docker for mac"
 
 Install [minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
 
-## Verifier Kubernetes Cluster
+## Vérifier Kubernetes Cluster
 
 	$ kubectl version
 	$ kubectl config current-context
