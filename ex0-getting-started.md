@@ -11,7 +11,7 @@ Activer le kubernetes dans "docker for mac" :
 </p>
 
 
-* De préférence mettre `4Go` pour docker for mac
+> De préférence mettre `4Go` pour docker for mac
 
 **Linux**
 
