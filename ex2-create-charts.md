@@ -5,7 +5,9 @@
 Initialisez un nouveau chart nommé `microservice-a`
 <details><summary>Solution</summary>
 <p>
-`$ helm create microservice-a`
+
+    $ helm create microservice-a
+
 </p>
 </details>
 
