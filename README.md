@@ -11,6 +11,10 @@ A hands-on to play with [Helm](https://helm.sh)
 
 [Commencer hands-on](ex0-getting-started.md)
 
+## Architecture cible
+
+![Architecture cible](img/target-architecture.png)
+
 ## Autres tutoriels
 
 * [How to Create Your First Helm Chart (bitnami)](https://docs.bitnami.com/kubernetes/how-to/create-your-first-helm-chart/)
