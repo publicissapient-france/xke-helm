@@ -1,8 +1,14 @@
 # Exercice 2 - Créer son propre chart
 
+TODO: Le but + Photo
+
 ## 1. Initialiser un chart
 
-Initialisez un nouveau chart nommé `microservice-a`
+### Détails
+Helm permet d'initialiser le nouveau chart (créer un répértoire avec l'arborescence des fichiers) à partir de template standard
+
+### Instructions
+* Initialisez un nouveau chart nommé `microservice-a` with `helm create`
 <details><summary>Solution</summary>
 <p>
 
@@ -12,40 +18,79 @@ Initialisez un nouveau chart nommé `microservice-a`
 </details>
 
 
-## 2. Microservice A v1
+## 2. Microservice A (v1)
 
-* Ouvrir le fichier `deployment.yaml` et chercher la section `containers`
-    * Par défaut le chart généré:
-        * Utilise une image Docker de nginx
-        * Expose le port `80`
-        * Déclare un endpoint de monitoring à la racine
-* Modifier la configuration afin de pointer sur l'image Docker du micro-service A
-    * Les valeurs à utiliser sont déduites du `values.yaml`
-    * L'image est disponible sur `xebiafrance/xke-helm-microservice-a`
-        * Utiliser le tag *`v1`*
-        * Ouvrir le port *`9081`* 
-* Modifier le service en
-    type: NodePort
-    port: 9081
-* Modifier la configuration pour inclure le monitoring du chart
-    * Le micro-service A expose un endpoint de monitoring
-        * [/actuator/health](http://localhost:8080/actuator/health)
-    * Définir une variable `monitoringPath`
+### Details :
+* Microservice A (v1) n'a aucune dependance
+* L'image est disponible `xebiafrance/xke-helm-microservice-a:v1`
+* L'application expose le port `9081`
+
+Instructions:
+* Le template généré utilise une image Docker de nginx, expose le port `80` et déclare un endpoint de health-check `/`
+    * Voir `deployment.yaml` section `containers`
+* Modifier `values.yaml` 
+    * section `image:` - afin de deployer le `Microservice A` (v1). 
+    * section `service:` (`type: NodePort` et `port: 9081`)
+
+> _Note: Ne toucher qu'au `values.yaml`_
+    
+* Modifier le `deployment.yaml` pour inclure le health-check du chart
     * Compléter les sections `livenessProbe` et `readinessProbe`
-        * Modifier le path
-        * Ajouter un initialDelaySeconds (15s)
-        * Ajouter un timeoutSeconds (5s)   
-* Déployer le chart
+        * Modifier le path : `/actuator/health`
+        * Ajouter un `initialDelaySeconds` (30s)
+        * Ajouter un `timeoutSeconds` (10s)
+* Déployer le chart avec `helm install`
+
+<details><summary>Solution</summary>
+<p>
+
+    $ cd <chart directory>
+    $ helm install .
+
+</p>
+</details>
+
+
 * Vérifier dans le dashboard l'état du pod
 * (Optionnel) Exposer le endpoint de monitoring en local
-    * kubectl get services
-    * kubectl port-forward svc/dealing-squid-microservice-a 9081:9081
-    * curl
-    
-## 3. Microservice A v2
 
-* Ajouter une dépendance à mongodb
-    * Indice: requirements.yaml
+<details><summary>Solution</summary>
+<p>
+
+    $ kubectl get services
+    $ kubectl port-forward svc/<service name>-microservice-a 9081:9081
+    $ curl http://localhost:9081
+
+</p>
+</details>
+
+    
+## 3. Microservice A (v2)
+
+Détails :
+* La v2 ne `Microservice A` nécessite mongodb
+* Le host et port de mongodb sont injectés par les variables d'environnements :
+```
+    MONGODB_HOST
+    MONGODB_PORT
+```
+
+Instructions :
+* Ajouter une dépendance au chart de mongodb (`stable/mongodb:5.9.0`)
+
+<details><summary>Solution</summary>
+<p>
+
+Créer un fichier `requirements.yaml` à la racine du chart
+
+    dependencies:
+      - name: mongodb
+        version: 5.9.0
+        repository: https://kubernetes-charts.storage.googleapis.com/
+
+</p>
+</details>
+
 * Mettre à jour les dépendances du chart
 
 <details><summary>Solution</summary>
@@ -56,6 +101,58 @@ Initialisez un nouveau chart nommé `microservice-a`
 </p>
 </details>
 
-* Désactiver le mode de passe de mongodb
-    * [Configuration du chart mongodb](https://github.com/helm/charts/tree/master/stable/mongodb#configuration)
-[< Previous](ex1-using-charts.md) | [Home](README.md) | [Next >]()
+* Désactiver le mot de passe de mongodb
+
+<details><summary>Solution</summary>
+<p>
+
+Ajouter dans `values.yaml` :
+
+    mongodb:
+        usePassword: false
+
+</p>
+</details>
+
+* Ajouter les variables d'environnement à la definition du conteneur (dans `deployment.yaml`, section `spec.containers`)
+    * `MONGODB_HOST` - `"{{- printf "%s-%s" .Release.Name "mongodb" | trunc 63 | trimSuffix "" -}}"`
+    * `MONGODB_PORT` - `"{{- .Values.mongodb.service.port -}}"`  
+
+<details><summary>Solution</summary>
+<p>
+
+Ajouter dans `deployement.yaml` dans la section `spec.containers` :
+
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+
+        ...
+
+          env:
+            - name: MONGODB_HOST
+              value: "{{- printf "%s-%s" .Release.Name "mongodb" | trunc 63 | trimSuffix "" -}}"
+            - name: MONGODB_PORT
+              value: "{{- .Values.mongodb.service.port -}}"
+              
+        ...
+
+</p>
+</details>
+
+* Upgrade release with `helm upgrade`
+
+<details><summary>Solution</summary>
+<p>
+
+    $ cd <chart directory>
+    $ helm upgrade <relase name> .
+
+</p>
+</details>
+
+* Vérifier que la révision de votre release a été incrémentée 
+
+    
+    
+[< Previous](ex1-using-charts.md) | [Home](README.md) | [Next >](ex3-parent-chart.md)
