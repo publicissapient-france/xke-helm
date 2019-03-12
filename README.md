@@ -10,7 +10,7 @@ A hands-on to play with [Helm](https://helm.sh)
 ## Le deployment cible
 
 <p>
-<img src="img/target-architecture.png" height="300" width="300">
+<img src="img/target-architecture.png" height="300">
 </p>
 
 ## Hands On
