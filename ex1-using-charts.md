@@ -16,8 +16,14 @@
 
 ## 2. Personnaliser le chart `mongodb`
 
-* Installer le chart `mongodb` en personnalisant le `mongodbRootPassword` 
-* 
+* Installer le chart `mongodb` en personnalisant le `mongodbRootPassword` à `testPassword` 
+* Verifier que le mot de passe est changé
+* Ajouter quelques documents dans mongodb
 
+	> use test
+	> db.person.insert({name:"Steve Jobs", "age": 56})
+	> db.person.insert({name:"Jeanne Calment", "age": 118})
+
+* Supprimer la release 
 
 [< Previous](README.md) | [Home](README.md) | [Next >](ex2-creating-charts.md)
