@@ -23,4 +23,4 @@
 * Vérifier dans le dashboard que le mot de passe a été changé
 * Supprimer la release 
 
-[< Previous](README.md) | [Home](README.md) | [Next >](ex2-creating-charts.md)
+[< Previous](README.md) | [Home](README.md) | [Next >](ex2-create-charts.md)
