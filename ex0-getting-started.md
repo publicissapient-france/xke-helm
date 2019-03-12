@@ -6,7 +6,10 @@
 **Mac**
 
 Activer le kubernetes dans "docker for mac"
-![kube-for-mac](img/kube-for-mac.png){:height="24px" width="48px"}
+![kube-for-mac](img/kube-for-mac.png)
+
+<img src="img/kube-for-mac.png" align="left" height="200" width="200" >
+
 
 > De préférence mettre `4Go` pour docker for mac
 
