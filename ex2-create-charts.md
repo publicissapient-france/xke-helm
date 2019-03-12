@@ -2,8 +2,13 @@
 
 ## 1. Initialiser un chart
 
-* Dans le répertoire `helm`
-    * Initialiser un nouveau chart nommé `microservice-a`
+Initialisez un nouveau chart nommé `microservice-a`
+<details><summary>Solution</summary>
+<p>
+`$ helm create microservice-a`
+</p>
+</details>
+
 
 ## 2. Microservice A v1
 
@@ -40,17 +45,15 @@
 * Ajouter une dépendance à mongodb
     * Indice: requirements.yaml
 * Mettre à jour les dépendances du chart
-<details><summary>CLICK ME</summary>
+
+<details><summary>Solution</summary>
 <p>
 
-#### yes, even hidden code blocks!
-
-```python
-print("hello world!")
-```
+    $ helm dep update
 
 </p>
 </details>
+
 * Désactiver le mode de passe de mongodb
     * [Configuration du chart mongodb](https://github.com/helm/charts/tree/master/stable/mongodb#configuration)
 [< Previous](ex1-using-charts.md) | [Home](README.md) | [Next >]()
