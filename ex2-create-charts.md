@@ -1,6 +1,9 @@
 # Exercice 2 - Créer son propre chart
 
-TODO: Le but + Photo
+Dans cet exercice on va créer et deployer le chart pour notre première microservice (`Microservice A`). 
+La version `v1` de `Microservice A` ne depend d'aucune autre service. La version `v2` quand à elle, depend de la base (chart) `mongodb`.
+
+TODO: Photo
 
 ## 1. Initialiser un chart
 
@@ -96,7 +99,8 @@ Créer un fichier `requirements.yaml` à la racine du chart
 <details><summary>Solution</summary>
 <p>
 
-    $ helm dep update
+    $ cd <chart directory>
+    $ helm dep update .
 
 </p>
 </details>
