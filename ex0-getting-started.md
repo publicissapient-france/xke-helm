@@ -4,11 +4,11 @@
 ## Docker 
 
 **Mac**
-Installer (docker)[https://docs.docker.com/docker-for-mac/install/]
+Installer [docker](https://docs.docker.com/docker-for-mac/install/)
 > De préférence mettre `4Go` pour docker for mac
 
 **Linux (ubuntu)**
-Installer (docker)[https://docs.docker.com/install/linux/docker-ce/ubuntu]
+Installer [docker](https://docs.docker.com/install/linux/docker-ce/ubuntu)
 
 ## local Kubernetes cluster
 
