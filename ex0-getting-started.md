@@ -45,12 +45,13 @@ Afficher [Kubernetes Dashboard](http://localhost:8001/api/v1/namespaces/kube-sys
 * Vérifier que l'option a été rajoutée.
 * Relancer le proxy.
  
-   
-    $ kubectl -n kube-system get deployment kubernetes-dashboard --output yaml | grep enable-skip-login
-    $ kubectl -n kube-system patch deployment kubernetes-dashboard --patch "$(cat patch-kubernetes-dashboard-deployment.yaml)"
-    $ kubectl -n kube-system get deployment kubernetes-dashboard --output yaml | grep enable-skip-login
-    $ kubectl proxy
-    
+```shell
+$ kubectl -n kube-system get deployment kubernetes-dashboard --output yaml | grep enable-skip-login
+$ kubectl -n kube-system patch deployment kubernetes-dashboard --patch "$(cat patch-kubernetes-dashboard-deployment.yaml)"
+$ kubectl -n kube-system get deployment kubernetes-dashboard --output yaml | grep enable-skip-login
+$ kubectl proxy
+```
+        
 </p>
 </details>
 
