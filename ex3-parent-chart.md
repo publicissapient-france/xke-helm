@@ -2,7 +2,7 @@
 
 Dans cet exercice nous allons créer le chart du `Microservice B`. 
 Ce microservice communique avec le `Microservice A` via HTTP.
-Pour cela il faudra créer un chart parent qui a contiendra les charts du `Microservice A`, du `Microservice B` et finalement le chart de `mongodb`.
+Pour cela il faudra créer un chart parent qui aura les charts du `Microservice A` et du `Microservice B` comme dépendances.
 
 TODO: Photo
 
@@ -13,10 +13,11 @@ TODO: Photo
 * Le healthcheck du `Microservice B` vérifie qu'il a accès à `mongodb` et au `Microservice A`
 * Le `Microservice B` a besoin des variables d'environnement suivantes :
 
-
-    MONGODB_HOST - même valeur que pour le Microservice A
-    MONGODB_PORT - même valeur que pour le Microservice A
-    SERVICE_A_URL - pour le moment laisser à localhost:9081
+```
+MONGODB_HOST : même valeur que pour le Microservice A
+MONGODB_PORT : même valeur que pour le Microservice A
+SERVICE_A_URL : pour le moment laisser à localhost:9081
+```
 
 ### Instructions
 

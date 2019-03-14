@@ -27,12 +27,12 @@ Le nouveau chart se présente sous la forme d'un répertoire avec une arborescen
 
 ## 2. Microservice A (v1)
 
-### Details :
+### Détails :
 * Le Microservice A (v1) n'a aucune dépendance
 * Le tag de l'image Docker à utiliser est `xebiafrance/xke-helm-microservice-a:v1`
 * L'application expose le port `9081`
 
-### Instructions:
+### Instructions :
 * Le template généré utilise une image Docker de `nginx, expose le port `80` et déclare un endpoint de healthcheck sur `/` 
 _(voir `templates/deployment.yaml`, section `containers`)_
 * Modifier le fichier `values.yaml` 
@@ -45,6 +45,7 @@ _(voir `templates/deployment.yaml`, section `containers`)_
         * Modifier le path : `/actuator/health`
         * Ajouter un `initialDelaySeconds` (30s)
         * Ajouter un `timeoutSeconds` (10s)
+    * Modifier le port à `9081`
 * Déployer le chart avec `helm install`
 
 <details><summary>Solution</summary>
@@ -64,7 +65,7 @@ _(voir `templates/deployment.yaml`, section `containers`)_
 <p>
 
     $ kubectl get services
-    $ kubectl port-forward svc/<service name>-xke-helm-microservice-a 9081:9081
+    $ kubectl port-forward svc/<service name> 9081:9081
     $ curl http://localhost:9081
 
 </p>
@@ -73,15 +74,15 @@ _(voir `templates/deployment.yaml`, section `containers`)_
     
 ## 3. Microservice A (v2)
 
-Détails :
-* La v2 du `Microservice A` nécessite mongodb
-* Le host et port de mongodb sont injectés via les variables d'environnement :
+### Détails :
+* La *v2* du `Microservice A` nécessite `mongodb`
+* Le `host` et `port` de mongodb sont injectés via les variables d'environnement :
 ```
     MONGODB_HOST
     MONGODB_PORT
 ```
 
-Instructions :
+### Instructions :
 * Ajouter une dépendance au chart de mongodb (`stable/mongodb:5.9.0`)
 
 <details><summary>Solution</summary>
@@ -108,7 +109,7 @@ Créer un fichier `requirements.yaml` à la racine du chart
 </p>
 </details>
 
-* Désactiver le mot de passe de mongodb
+* Désactiver le mot de passe de mongodb dans `xke-helm-microservice-a/values.yaml`
 
 <details><summary>Solution</summary>
 <p>
@@ -121,7 +122,7 @@ Ajouter dans `values.yaml` :
 </p>
 </details>
 
-* Ajouter les variables d'environnement à la definition du conteneur (dans `deployment.yaml`, section `spec.containers`)
+* Ajouter les variables d'environnement à la definition du conteneur dans `xke-helm-microservice-a/templates/deployment.yaml`, section `spec.containers`)
     * `MONGODB_HOST` - `"{{- printf "%s-%s" .Release.Name "mongodb" | trunc 63 | trimSuffix "" -}}"`
     * `MONGODB_PORT` - `"{{- .Values.mongodb.service.port -}}"`  
 
