@@ -27,7 +27,7 @@ Il s'agit souvent de "building blocks" que vous pouvez utiliser pour construire 
     * Avec le statut DEPLOYED
     * Avec le statut DELETED
     
-> <details><summary>Solution</summary>
+<details><summary>Solution</summary>
 <p>
 
     $ helm ls --deployed
