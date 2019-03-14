@@ -103,16 +103,14 @@ File `xke-helm-microservice-b/templates/deployment.yaml` :
        ...
     
        - name: SERVICE_A_URL
-         value: `"{{- printf "http://%s-%s:9081" .Release.Name "xke-helm-microservice-a" | trunc 63 | trimSuffix "" -}}"`
-         
-         http://donkey-car-xke-helm-microservice-a:9081
+         value: "{{- printf "http://%s-%s:9081" .Release.Name "xke-helm-microservice-a" | trunc 63 | trimSuffix "" -}}"
          
        ...
 
 </p>
 </details>
 
-* N'oublier pas de le repackager le `xke-helm-microservice-b` (`$ helm package .`) et mettre à jour les dépendances au niveau de chart parent (`$ helm dep update .`)  
+* N'oublier pas de le packager le `xke-helm-microservice-b` (`$ helm package .`) et mettre à jour les dépendances au niveau de chart parent (`$ helm dep update .`)  
 * Installer / Upgrader le release `xke-helm-parent`
 * Valider le fonctionnement (sur kubernetes dashboard par exemple)
 * Optional :
