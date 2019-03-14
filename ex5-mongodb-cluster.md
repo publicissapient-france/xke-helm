@@ -20,7 +20,7 @@ Notez que, au sein du cluster, il sera très important d'isoler les bases de dé
 
 * Créer le nouveau chart `xke-helm-mongodb`
 * Supprimer les templates
-* Paramétrer le `values.yaml` pour passer le mongodb en mode cluster 
+* Paramétrer le `values.yaml` pour passer le mongodb en mode replicaSet 
 
 <details><summary>Solution</summary>
 <p>
@@ -30,13 +30,51 @@ File `xke-helm-mongodb/values.yaml`
     ...
     
     replicaSet:
-      
+      enabled: true
     
+    ...
 
 </p>
 </details>
 
+* Installer le chart en spécifiant le name de release à créer : `xke-mongodb`
 
+<details><summary>Solution</summary>
+<p>
+
+File `xke-helm-mongodb/values.yaml`
+
+    $ cd <chart directory>
+    $ helm install . --name xke-mongodb
+
+</p>
+</details>
+
+* Adapter les charts de `Microservice A` et `Microservice B` pour pointer `MONGODB_HOST` vers le nouveau clusteur
+* Bonus: 
+    * Définir une variable helm globale (par ex `mongodb.enabled = false`)
+    * Utiliser `condition: mongodb.enabled` au niveau des `requirements.yaml` de 'Microservice A et B' pour éviter telecharger la dependance mongo 
+    * Changer `MONGODB_HOST` dynamiquement
+
+<details><summary>Solution</summary>
+<p>
+
+File `microservice-a/deployment.yaml` et `microservice-b/deployment.yaml`
+
+    env:
+    
+      ...
+    
+      - name: MONGODB_HOST
+      {{- if .Values.mongodb.enabled }}
+        value: {{ template "mongodb.fullname" . }}
+      {{- else }}
+        value: {{ .Values.externalDatabase.host | quote }}
+      {{- end }}
+      
+      ...
+
+* Repackager er re-deployer
 
 *Bravo ! Vous êtes arrivés à la fin de hands-on ! Felicitations !!!* 
 
