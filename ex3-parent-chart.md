@@ -9,10 +9,10 @@ TODO: Photo
 ## 1. Créer le chart pour `Microservice B`
 
 ### Détails :
-* `Microservice B` communique avec le `Microservice A` via HTTP
+* Le `Microservice B` communique avec le `Microservice A` via HTTP
 * Le healthcheck du `Microservice B` vérifie qu'il a accès à `mongodb` et au `Microservice A`
+* Le `Microservice B` est exposé sur le ` `9082
 * Le `Microservice B` a besoin des variables d'environnement suivantes :
-* Le `Microservice B` expose le port `9082
 
 ```
 MONGODB_HOST : même valeur que pour le Microservice A
@@ -23,10 +23,10 @@ SERVICE_A_URL : pour le moment laisser à localhost:9081
 ### Instructions
 
 * En se basant sur le chart du `Microservice A` construire le nouveau chart pour le `Microservice B`
-* N'oublier pas renseigner le service `port` à `9082`
-* Mettre la variable `SERVICE_A_URL` à `localhost:9081` pour le moment
+* N'oubliez pas de renseigner le service `port` à `9082`
+* Laisser la variable `SERVICE_A_URL` à `localhost:9081` pour le moment
 * Déployer la release
-* Vérifier que le healthcheck `échoue sytématiquement
+* Vérifier que le `healthcheck` échoue sytématiquement
 * Supprimer la release
 
 ## 2. Distribuer les charts
@@ -34,14 +34,14 @@ SERVICE_A_URL : pour le moment laisser à localhost:9081
 ### Détails
 Helm se repose sur des `repositories` pour la distribution des charts.
 Pour héberger des charts un serveur HTTP doit être capable de :
-* Servir des fichiers YAML et des archives tar
-* Accepter les requêtes GET
+* D'accepter les requêtes GET
+* De servir des fichiers YAML et des archives tar
 
 Pour le dévelopement en local Helm dispose d'un serveur interne (helm serve). 
 
 ### Instructions
 
-* Lancer le serveur de repository local (dans un terminal distinct) : `$ helm serve`
+* Lancer dans un terminal distinct le serveur de repository local : `$ helm serve`
 * Packager les charts de `Microservice A` et `Microservice B` avec `$ helm package`
 
 <details><summary>Solution</summary>
@@ -62,19 +62,19 @@ $ helm package .
  
 ### Détails
 Ce chart parent représentera notre application dans son ensemble. 
-La méthode conseillée pour packager une application complexe consiste à créer un chart parent à partir des autres charts utilisés. 
+La méthode conseillée pour packager une application complexe consiste à créer un chart parent qui regroupera tous les autres charts dont vous aurez besoin. 
 Ce chart parent exposera les configurations sous forme de variables globales.
-On placera ensuite les subcharts dans le répértoire `charts/`.
+On placera ensuite les subcharts dans le répertoire `charts/`.
 
-Notre chart parent aura comme dépendances :
+Dans notre exemple le chart parent aura comme dépendances :
 
 * `Microservice A`
 * `Microservice B`
 
 Ces dépendances déclencheront la création de deux pods qui auront pour nom: "`<release-name>-<chart name>`".
-Etant donné que les 2 charts de microservices utilisent `mongodb` cela posera un problème de collision de nom entre les resources Kubernetes.
+Etant donné que ces charts utilisent tout deux `mongodb` cela posera un problème de collision de nom entre les resources Kubernetes.
 
-Pour s'en sortir il suffira de nommer respectivement les bases `mongodb-a` et `mongodb-b` dans les charts des `Microservice A et B`.
+Pour s'en sortir il faudra nommer respectivement les bases `mongodb-a` et `mongodb-b` dans les charts des `Microservice A et B`.
 Cette surcharge se fera via la variable `nameOverride` :    
 
 ```yaml
@@ -85,10 +85,10 @@ mongodb:
 
 ### Instructions
 
-* Ajouter `mongodb.nameOverride: mongodb-a` et `mongodb.nameOverride: mongodb-b` dans les charts des `Microservice A et B`
+* Ajouter `mongodb.nameOverride: mongodb-a` et `mongodb.nameOverride: mongodb-b` dans les charts des `Microservices A et B`
 * Créer un nouveau chart parent avec `$ helm create xke-helm-parent`
-* Supprimer le répertoire `/templates` qui est inutile pour cet exercice
-* Définir toutes les dépendances vers `Microservice A` et `Microservice B`
+* Supprimer le répertoire `/templates` qui n'est pas utile pour cet exercice
+* Définir les dépendances vers `Microservice A` et vers `Microservice B` dans le parent
 
 <details><summary>Solution</summary>
 <p>
@@ -108,7 +108,7 @@ Créer un fichier `requirements.yaml` contenant:
 </p>
 </details>
 
-* A cette étape l'application ne marchera toujours pas
+* A cette étape l'application ne marche toujours pas
 * Il faut modifier la variable d'environment `SERVICE_A_URL` qu'on a laissé à `localhost:9081` lors de l'étape précédente
 
 <details><summary>Solution</summary>

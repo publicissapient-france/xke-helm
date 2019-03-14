@@ -28,24 +28,24 @@ Le nouveau chart se présente sous la forme d'un répertoire avec une arborescen
 ## 2. Microservice A (v1)
 
 ### Détails :
-* Le Microservice A (v1) n'a aucune dépendance
+* Le `Microservice A` (v1) n'a aucune dépendance
 * Le tag de l'image Docker à utiliser est `xebiafrance/xke-helm-microservice-a:v1`
-* L'application expose le port `9081`
+* L'application est exposée sur le port `9081`
 
 ### Instructions :
 * Le template généré utilise une image Docker de `nginx`, expose le port `80` et déclare un endpoint de healthcheck sur `/` 
-_(voir `templates/deployment.yaml`, section `containers`)_
+(voir `templates/deployment.yaml`, section `containers`)
 * Modifier le fichier `values.yaml` 
     * section `image` - pointer sur l'image Docker de `Microservice A` (v1). 
     * section `service` - `type: NodePort` et `port: 9081`
     * _Note: Ne modifiez aucun fichier *SAUF* `values.yaml`_
     
-* Modifier le `deployment.yaml` pour inclure le healthcheck du chart
+* Modifier le fichier `deployment.yaml` pour inclure le healthcheck du chart
     * Compléter les sections `livenessProbe` et `readinessProbe`
         * Modifier le path : `/actuator/health`
         * Ajouter un `initialDelaySeconds` (30s)
         * Ajouter un `timeoutSeconds` (10s)
-    * Modifier le port à `9081`
+    * Modifier le port, valeur `9081`
 * Déployer le chart avec `helm install`
 
 <details><summary>Solution</summary>
@@ -79,7 +79,7 @@ $ curl http://localhost:9081
 
 ### Détails :
 * La *v2* du `Microservice A` nécessite `mongodb`
-* Le `host` et `port` de mongodb sont injectés via les variables d'environnement :
+* Le `host` et le `port` de mongodb sont injectés via les variables d'environnement :
 
 ```
 MONGODB_HOST
