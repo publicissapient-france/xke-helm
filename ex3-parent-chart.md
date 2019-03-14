@@ -22,9 +22,12 @@ SERVICE_A_URL : pour le moment laisser à localhost:9081
 ### Instructions
 
 * En se basant sur le chart du `Microservice A` construire le nouveau chart pour le `Microservice B`
-* Laisser la variable SERVICE_A_URL à `localhost:9081` pour le moment
+* Laisser la variable `SERVICE_A_URL` à `localhost:9081` pour le moment
 * Déployer la release
-* Vérifier que le healthcheck échoue sytématiquement
+* Vérifier que le healthcheck `échoue sytématiquement
+* Supprimer le release
+
+## 2. Distribuer les charts
 
 ### Détails
 Helm se repose sur des `repositories` pour la distribution des charts.
