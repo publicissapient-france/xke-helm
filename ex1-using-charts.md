@@ -20,15 +20,14 @@ Il s'agit souvent de "building blocks" que vous pouvez utiliser pour construire 
 </p>
 </details>
 
-* Se connecter à la base mongo
-> Indice: Lire la section NOTES de la commande précédente
+* Se connecter à la base mongo (Indice: Voir la section NOTES de la commande précédente)
 * Tester la connection avec `> show dbs`
 * Supprimer la release
 * Afficher dans le terminal les releases
     * Avec le statut DEPLOYED
     * Avec le statut DELETED
     
-<details><summary>Solution</summary>
+> <details><summary>Solution</summary>
 <p>
 
     $ helm ls --deployed
