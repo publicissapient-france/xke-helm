@@ -1,22 +1,24 @@
 # Exercice 4 - (Optionel) Utilisation de “PARTIALS” dans les templates
 
-Vous avez certainement rémarqué l'utilisation de fonction `include` dans les differents templates. 
-Le but de cet exercice est de créer une code reutilisable permettant de construire une variable `SERVICE_A_URL` dans le `Microservice B`.
+Vous avez certainement remarqué l'utilisation de la fonction `include` dans les différents templates.
+Le but de cet exercice sera de créer une code réutilisable permettant de construire une variable `SERVICE_A_URL` dans le `Microservice B`.
 
 ## 1. (Optionel) Service Port
 
 ### Détails :
 
-* Dans les charts `deployment.yaml` des charts `xke-helm-microservice-a` et `xke-helm-microservice-b`   
+* Dans les fichiers `deployment.yaml` des charts `xke-helm-microservice-a` et `xke-helm-microservice-b`   
 
 ### Instructions :
-* La variable helm `service.port` est déjà défini dans le `xke-helm-microservice-a/values.yaml` et `xke-helm-microservice-b/values.yaml`
-* Utiliser cette variable dans `xke-helm-microservice-a/templates/deployment.yaml` pour remplacer le port en dur `spec.containers.containerPort`
+* La variable helm `service.port` est déjà définie à deux endroits
+    * `xke-helm-microservice-a/values.yaml` 
+    * `xke-helm-microservice-b/values.yaml`
+* Utiliser cette variable dans `xke-helm-microservice-a/templates/deployment.yaml` pour remplacer la valeur en dur de `spec.containers.containerPort`
 
 <details><summary>Solution</summary>
 <p>
 
-File `xke-helm-microservice-a/templates/deployment.yaml` et `xke-helm-microservice-b/templates/deployment.yaml`
+Fichiers `xke-helm-microservice-a/templates/deployment.yaml` et `xke-helm-microservice-b/templates/deployment.yaml`
 
 ```yaml
     ...
@@ -40,7 +42,7 @@ File `xke-helm-microservice-a/templates/deployment.yaml` et `xke-helm-microservi
 <details><summary>Solution</summary>
 <p>
 
-File `xke-helm-microservice-b/templates/_helpers.tpl`
+Fichier `xke-helm-microservice-b/templates/_helpers.tpl`
 
 ```yaml
     ...
@@ -60,9 +62,9 @@ File `xke-helm-microservice-b/templates/_helpers.tpl`
 </p>
 </details>
 
-* Utiliser cet partial dans `xke-helm-microservice-b/templates/deployment.yaml` à l'aide de fonction `include`
+* Utiliser ce partial dans `xke-helm-microservice-b/templates/deployment.yaml` à l'aide de la fonction `include`
  
-* Packager le chart `xke-helm-microservice-b` et redeployer avec `$ helm upgrade`
+* Packager le chart `xke-helm-microservice-b` et redéployer avec `$ helm upgrade`
 
 <details><summary>Solution</summary>
 <p>

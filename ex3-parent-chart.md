@@ -114,7 +114,7 @@ Créer un fichier `requirements.yaml` contenant:
 <details><summary>Solution</summary>
 <p>
 
-File `xke-helm-microservice-b/templates/deployment.yaml` :
+Fichier `xke-helm-microservice-b/templates/deployment.yaml` :
 
 ```yaml
     env:

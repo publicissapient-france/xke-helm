@@ -25,7 +25,7 @@ Notez que, au sein du cluster, il sera très important d'isoler les bases de dé
 <details><summary>Solution</summary>
 <p>
 
-File `xke-helm-mongodb/values.yaml`
+Fichier `xke-helm-mongodb/values.yaml`
 
 ```yaml
     ...
@@ -44,7 +44,7 @@ File `xke-helm-mongodb/values.yaml`
 <details><summary>Solution</summary>
 <p>
 
-File `xke-helm-mongodb/values.yaml`
+Fichier `xke-helm-mongodb/values.yaml`
 
 ```sh
 $ cd <chart directory>
@@ -63,7 +63,7 @@ $ helm install . --name xke-mongodb
 <details><summary>Solution</summary>
 <p>
 
-File `xke-helm-microservice-a/templates/deployment.yaml` et `xke-helm-microservice-b/templates/deployment.yaml`
+Fichier `xke-helm-microservice-a/templates/deployment.yaml` et `xke-helm-microservice-b/templates/deployment.yaml`
 
 ```yaml
     env:
