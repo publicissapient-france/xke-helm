@@ -1,14 +1,14 @@
 # Exercice 1 - Utiliser les charts existants
 
-Le but de l'exercice est de s'habituer à utiliser les charts existants.
-Il existe beaucoup des charts helm telle que `mongodb`, `postgresql`, `wordpress`, etc.
+Le but de l'exercice est de se familiariser avec l'utilisation des charts.
+Il existe beaucoup de charts Helm tels que `mongodb`, `postgresql`, `wordpress` et bien d'autres encore.
 Il s'agit souvent de "building blocks" que vous pouvez utiliser pour construire vos propres charts.
 
 ## 1. Installer `mongodb`
 
 * Chercher le chart `mongodb`
 * Installer `mongodb`
-* Afficher dans le terminal les releases sur helm
+* Afficher dans le terminal les releases déployées sur Helm
 * Vérifier l'état des pods présents via le [Kubernetes Dashboard](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/.)
 * Afficher dans le terminal le statut du pod contenant mongodb avec `helm status`
 
@@ -39,7 +39,7 @@ Il s'agit souvent de "building blocks" que vous pouvez utiliser pour construire 
 
 ## 2. Personnaliser le chart `mongodb`
 
-* Afficher toutes les valeurs de charts `mongodb`
+* Afficher toutes les variables exposées par le chart `mongodb`
 
 <details><summary>Solution</summary>
 <p>
@@ -60,7 +60,7 @@ Il s'agit souvent de "building blocks" que vous pouvez utiliser pour construire 
 </p>
 </details>    
     
-* Afficher les variables surchargées de votre release
+* Afficher les variables surchargées par votre release
 
 <details><summary>Solution</summary>
 <p>

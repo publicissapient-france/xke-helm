@@ -1,39 +1,40 @@
 # Exercice 3 - Créer un chart parent
 
-Dans cet exercice on créera le chart pour le `Microservice B`. Ce microservice appelle le `Microservice A` par http.
-Pour cela il faudra créer un chart parent qui a comme dependances les charts `Microservice A`, `Microservice B` et le chart `mongodb`.
+Dans cet exercice nous allons créer le chart du `Microservice B`. 
+Ce microservice communique avec le `Microservice A` via HTTP.
+Pour cela il faudra créer un chart parent qui a contiendra les charts du `Microservice A`, du `Microservice B` et finalement le chart de `mongodb`.
 
 TODO: Photo
 
 ## 1. Créer le chart pour `Microservice B`
 
 ### Détails :
-* `Microservice B` "parle" à `Microservice A` par http
-* Le check-health de `Microservice B` vérifie qu'il a accès à `mongodb` et à `Microservice A`
+* `Microservice B` communique avec le `Microservice A` via HTTP
+* Le healthcheck du `Microservice B` vérifie qu'il a accès à `mongodb` et au `Microservice A`
 * Le `Microservice B` a besoin des variables d'environnement suivantes :
 
 
-    MONGODB_HOST - même que pour Microservice A
-    MONGODB_PORT - même que pour Microservice A
+    MONGODB_HOST - même valeur que pour le Microservice A
+    MONGODB_PORT - même valeur que pour le Microservice A
     SERVICE_A_URL - pour le moment laisser à localhost:9081
 
 ### Instructions
 
 * En se basant sur le chart du `Microservice A` construire le nouveau chart pour le `Microservice B`
-* Laisser SERVICE_A_URL `localhost:9081` pour le moment
-* Deployer la release
-* Verifier que le health-check échoue sytématiquement
-
-## 2. "Distribuer" les charts
+* Laisser la variable SERVICE_A_URL à `localhost:9081` pour le moment
+* Déployer la release
+* Vérifier que le healthcheck échoue sytématiquement
 
 ### Détails
-Helm se repose sur les chart répositories pour la distribution des charts.
-Tout serveur HTTP pouvant servir les fichiers YAML et les fichiers tar et pouvant répondre aux demandes GET peut être utilisé comme serveur de référentiel.
-Helm comes with built-in package server for developer testing (helm serve). 
+Helm se repose sur des `repositories` pour la distribution des charts.
+Pour servir des charts un serveur HTTP doit être capable de :
+    * Servir des fichiers YAML et des archives tar
+    * Accepter les requêtes GET
+Pour le dévelopement en local Helm dispose d'un serveur interne (helm serve). 
 
 ### Instructions
 
-* Lancer le serveur de répository locale (dans terminal distinct) : `$ helm serve`
+* Lancer le serveur de repository local (dans un terminal distinct) : `$ helm serve`
 * Packager les charts de `Microservice A` et `Microservice B` avec `$ helm package`
 
 <details><summary>Solution</summary>
@@ -45,15 +46,16 @@ Helm comes with built-in package server for developer testing (helm serve).
 </p>
 </details>
 
-* Verifier que les `tgz` des charts sont présents dans `~/.helm/repository/local` (le répértoire utilisé par le `helm serve`)
+* Vérifier que les `tgz` des charts sont présents dans `~/.helm/repository/local` (le répértoire utilisé par le `helm serve`)
 
 
 ## 3. Créer le chart parent
  
 ### Détails
-Ce chart parent réprésentera notre application dans son ensemble. 
-La meilleure pratique actuelle pour composer une application complexe à partir des autres charts consiste à créer un chart parent 
-qui expose les configurations globales (les valeurs globales) et ensuite utiliser le répértoire `charts/` pour y ajouter des composants.
+Ce chart parent représentera notre application dans son ensemble. 
+La méthode conseillée pour packager une application complexe consiste à créer un chart parent à partir des autres charts utilisés. 
+Ce chart parent exposera les configurations sous forme de variables globales.
+On placera ensuite les subcharts dans le répértoire `charts/`.
 
 Notre chart parent aura comme dépendances :
 

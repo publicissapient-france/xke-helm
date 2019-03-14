@@ -1,17 +1,19 @@
 # Exercice 2 - Créer son propre chart
 
-Dans cet exercice on va créer et deployer le chart pour notre première microservice (`Microservice A`). 
-La version `v1` de `Microservice A` ne depend d'aucune autre service. La version `v2` quand à elle, depend de la base (chart) `mongodb`.
+Dans cet exercice nous allons créer et déployer un chart contenant notre premier microservice (`Microservice A`). 
+La version `v1` de `Microservice A` ne dépend d'aucun autre service. 
+La version `v2` quant-à-elle, dépend de la base `mongodb` (et donc du chart du même nom).
 
 TODO: Photo
 
 ## 1. Initialiser un chart
 
 ### Détails
-Helm permet d'initialiser le nouveau chart (créer un répértoire avec l'arborescence des fichiers) à partir de template standard
+Helm permet d'initialiser un nouveau chart selon un template standard.
+Le nouveau chart se présente sous la forme d'un répertoire avec une arborescence des fichiers précise.
 
 ### Instructions
-* Initialisez un nouveau chart nommé `microservice-a` with `helm create`
+* Initialisez un nouveau chart nommé `microservice-a` avec la commande `helm create`
 <details><summary>Solution</summary>
 <p>
 
@@ -24,20 +26,20 @@ Helm permet d'initialiser le nouveau chart (créer un répértoire avec l'arbore
 ## 2. Microservice A (v1)
 
 ### Details :
-* Microservice A (v1) n'a aucune dependance
-* L'image est disponible `xebiafrance/xke-helm-microservice-a:v1`
+* Le Microservice A (v1) n'a aucune dépendance
+* Le tag de l'image Docker à utiliser est `xebiafrance/xke-helm-microservice-a:v1`
 * L'application expose le port `9081`
 
 Instructions:
-* Le template généré utilise une image Docker de nginx, expose le port `80` et déclare un endpoint de health-check `/`
-    * Voir `deployment.yaml` section `containers`
-* Modifier `values.yaml` 
-    * section `image:` - afin de deployer le `Microservice A` (v1). 
+* Le template généré utilise une image Docker de nginx, expose le port `80` et déclare un endpoint de healthcheck sur `/`
+    * Voir `deployment.yaml`, section `containers`
+* Modifier le fichier `values.yaml` 
+    * section `image:`, pointer sur l'image Docker de `Microservice A` (v1). 
     * section `service:` (`type: NodePort` et `port: 9081`)
 
-> _Note: Ne toucher qu'au `values.yaml`_
+> _Note: Ne modifiez aucun fichier *SAUF* `values.yaml`_
     
-* Modifier le `deployment.yaml` pour inclure le health-check du chart
+* Modifier le `deployment.yaml` pour inclure le healthcheck du chart
     * Compléter les sections `livenessProbe` et `readinessProbe`
         * Modifier le path : `/actuator/health`
         * Ajouter un `initialDelaySeconds` (30s)
@@ -71,8 +73,8 @@ Instructions:
 ## 3. Microservice A (v2)
 
 Détails :
-* La v2 ne `Microservice A` nécessite mongodb
-* Le host et port de mongodb sont injectés par les variables d'environnements :
+* La v2 du `Microservice A` nécessite mongodb
+* Le host et port de mongodb sont injectés via les variables d'environnement :
 ```
     MONGODB_HOST
     MONGODB_PORT
@@ -144,7 +146,7 @@ Ajouter dans `deployement.yaml` dans la section `spec.containers` :
 </p>
 </details>
 
-* Upgrade release with `helm upgrade`
+* Mettre à jour la release avec `helm upgrade`
 
 <details><summary>Solution</summary>
 <p>
@@ -157,6 +159,5 @@ Ajouter dans `deployement.yaml` dans la section `spec.containers` :
 
 * Vérifier que la révision de votre release a été incrémentée 
 
-    
-    
+
 [< Previous](ex1-using-charts.md) | [Home](README.md) | [Next >](ex3-parent-chart.md)
