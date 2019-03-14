@@ -110,6 +110,9 @@ Dans `microservice-b` -> `deployment.yaml` :
 * N'oublier pas de le repackager le `microservice-b` (`$ helm package .`) et mettre à jour les dépendances au niveau de chart parent (`$ helm dep update .`)  
 * Installer / Upgrader le release `xke-helm-parent`
 * Valider le fonctionnement (sur kubernetes dashboard par exemple)
+* Optional :
+    * Redimensionner les Microservices A et B pour en avoir 3 instances de chaqu'une
+    * Ne toucher que values de chat parent
 
 
 [< Previous](ex2-create-charts.md) | [Home](README.md) | [Next >](ex4-template-helpers.md)

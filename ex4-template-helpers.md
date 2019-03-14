@@ -7,7 +7,7 @@ Le but ici est de créer une "fonction" permettant de construire une variable `S
 
 ### Détails :
 
-* Il est possible de ré-définir le ports des Microservices A et B en leurs passant une variable d'environnement `SERVICE_PORT`  
+* Il est possible de rédéfinir le ports des Microservices A et B en leurs passant une variable d'environnement `SERVICE_PORT`  
 
 ### Instructions :
 * Définir une variable helm `service.port = 9081` dans le chart de `Microservice A`
