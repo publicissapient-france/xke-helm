@@ -1,7 +1,11 @@
-# Exercice 3 - Créer un chart parent
+# Exercice 4 - (Advanced) Mongodb cluster 
 
-Dans cet exercice on créera le chart pour le `Microservice B`. Ce microservice appelle le `Microservice A` par http.
-Pour cela il faudra créer un chart parent qui a comme dependances les charts `Microservice A`, `Microservice B` et le chart `mongodb`.
+Actuellement, chaque microservice a son propre instance de mongodb. Ces bases tournent actuellement en mono-instance, 
+ce qui évidemment n'est pas adapté à l'environnement de production.     
+Il n'est également pas opportun non plus d'avoir un clusteur mongodb par microservice.
+
+
+Le but de cet exercice est d'installer le clusteur `mongodb` à l'aide de son propre chart pérsonnalisé. Ensuite, desactiver dinamiquement   
 
 TODO: Photo
 
@@ -110,4 +114,7 @@ Dans `microservice-b` -> `deployment.yaml` :
 * Valider le fonctionnement (sur kubernetes dashboard par exemple)
 
 
-[< Previous](ex2-create-charts.md) | [Home](README.md) | [Next >](ex4-template-helpers.md)
+
+*Bravo ! Vous avez arrivé à la fin d'exercice ! Felicitations !* 
+
+[< Previous](ex4-template-helpers.md) | [Home](README.md)
