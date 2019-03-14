@@ -38,7 +38,7 @@ _(voir `templates/deployment.yaml`, section `containers`)_
 * Modifier le fichier `values.yaml` 
     * section `image` - pointer sur l'image Docker de `Microservice A` (v1). 
     * section `service` - `type: NodePort` et `port: 9081`
-    * > _Note: Ne modifiez aucun fichier *SAUF* `values.yaml`_
+    * _Note: Ne modifiez aucun fichier *SAUF* `values.yaml`_
     
 * Modifier le `deployment.yaml` pour inclure le healthcheck du chart
     * Compléter les sections `livenessProbe` et `readinessProbe`
