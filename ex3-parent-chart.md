@@ -32,8 +32,9 @@ SERVICE_A_URL : pour le moment laisser à localhost:9081
 ### Détails
 Helm se repose sur des `repositories` pour la distribution des charts.
 Pour servir des charts un serveur HTTP doit être capable de :
-    * Servir des fichiers YAML et des archives tar
-    * Accepter les requêtes GET
+* Servir des fichiers YAML et des archives tar
+* Accepter les requêtes GET
+
 Pour le dévelopement en local Helm dispose d'un serveur interne (helm serve). 
 
 ### Instructions
