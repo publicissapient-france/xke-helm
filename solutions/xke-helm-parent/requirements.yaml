@@ -1,7 +1,7 @@
 dependencies:
-  - name: microservice-a
+  - name: xke-helm-microservice-a
     version: 0.1.0
     repository: http://127.0.0.1:8879/charts
-  - name: microservice-b
+  - name: xke-helm-microservice-b
     version: 0.1.0
     repository: http://127.0.0.1:8879/charts

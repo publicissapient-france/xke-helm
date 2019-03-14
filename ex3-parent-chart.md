@@ -12,6 +12,7 @@ TODO: Photo
 * `Microservice B` communique avec le `Microservice A` via HTTP
 * Le healthcheck du `Microservice B` vérifie qu'il a accès à `mongodb` et au `Microservice A`
 * Le `Microservice B` a besoin des variables d'environnement suivantes :
+* Le `Microservice B` expose le port `9082
 
 ```
 MONGODB_HOST : même valeur que pour le Microservice A
@@ -22,10 +23,11 @@ SERVICE_A_URL : pour le moment laisser à localhost:9081
 ### Instructions
 
 * En se basant sur le chart du `Microservice A` construire le nouveau chart pour le `Microservice B`
-* Laisser la variable `SERVICE_A_URL` à `localhost:9081` pour le moment
+* N'oublier pas renseigner le service `port` à `9082`
+* Mettre la variable `SERVICE_A_URL` à `localhost:9081` pour le moment
 * Déployer la release
 * Vérifier que le healthcheck `échoue sytématiquement
-* Supprimer le release
+* Supprimer la release
 
 ## 2. Distribuer les charts
 
@@ -67,6 +69,16 @@ Notre chart parent aura comme dépendances :
 * `Microservice A`
 * `Microservice B`
 
+Les dépendances de chart vont créer des pods correspondants avec les noms suivants le schèma : `<release-name>-<chart name>`.
+Etant donné que 2 charts de microservices tirent `mongodb` en dépendance, cela posera un problème de collesion des noms des resources Kubernetes.
+Le moyen simple de s'en sortir est de nommer les resources comme `mongodb-a` et `mongodb-b` respectivement dans les charts de `Microservice A et B` en utilisant `nameOverride` :    
+
+```
+mongodb:
+  nameOverride: consent-mongodb
+  usePassword: false
+``` 
+
 
 ### Instructions
 
@@ -80,10 +92,10 @@ Notre chart parent aura comme dépendances :
 Créer `requirements.yaml` avec :
 
     dependencies:
-      - name: microservice-a
+      - name: xke-helm-microservice-a
         version: 0.1.0
         repository: http://127.0.0.1:8879/charts
-      - name: microservice-b
+      - name: xke-helm-microservice-b
         version: 0.1.0
         repository: http://127.0.0.1:8879/charts
 
@@ -110,7 +122,8 @@ File `xke-helm-microservice-b/templates/deployment.yaml` :
 </p>
 </details>
 
-* N'oublier pas de le packager le `xke-helm-microservice-b` (`$ helm package .`) et mettre à jour les dépendances au niveau de chart parent (`$ helm dep update .`)  
+* N'oublier pas de le packager le `xke-helm-microservice-b` (`$ helm package .`) 
+* Mettre à jour les dépendances au niveau de chart parent (`$ helm dep update .`)  
 * Installer / Upgrader le release `xke-helm-parent`
 * Valider le fonctionnement (sur kubernetes dashboard par exemple)
 * Optional :
