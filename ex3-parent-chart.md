@@ -130,7 +130,7 @@ File `xke-helm-microservice-b/templates/deployment.yaml` :
 * Installer / Upgrader la release `xke-helm-parent`
 * Valider le fonctionnement (sur kubernetes dashboard par exemple)
 * Optional :
-    * Redimensionner les Microservices A et B pour en avoir 3 instances de chaqu'une (`replicaCount: 3`)
+    * Redimensionner les `Microservices A et B` pour en avoir 3 instances de chaqu'une (`replicaCount: 3`)
     * Ne toucher que values de chat parent
 
 

@@ -1,33 +1,17 @@
 # Exercice 4 - (Optionel) Utilisation de “PARTIALS” dans les templates
 
 Vous avez certainement rémarqué l'utilisation de fonction `include` dans les differents templates. 
-Le but ici est de créer une "fonction" permettant de construire une variable `SERVICE_A_URL` dans le `Microservice B`.
+Le but de cet exercice est de créer une code reutilisable permettant de construire une variable `SERVICE_A_URL` dans le `Microservice B`.
 
-## 1. Créer le chart pour `Microservice B`
+## 1. (Optionel) Variabilisation de ports
 
 ### Détails :
 
-* Il est possible de rédéfinir le ports des Microservices A et B en leurs passant une variable d'environnement `SERVICE_PORT`  
+* Il est possible de rédéfinir les ports des `Microservices A et B` en leurs passant une variable d'environnement `SERVICE_PORT`  
 
 ### Instructions :
-* Définir une variable helm `service.port = 9081` dans le chart de `Microservice A`
-
-<details><summary>Solution</summary>
-<p>
-
-File `xke-helm-microservice-a/values.yaml`
-
-    ...
-    
-    service:
-      port: 9081
-        
-    ...
-
-</p>
-</details>
-
-* Utiliser cette variable dans `templates/deployment.yaml` de `Microservice A` pour lui passer une variable d'environement `SERVICE_PORT`
+* La variable helm `service.port` est déjà défini dans le `xke-helm-microservice-a/values.yaml`
+* Utiliser cette variable dans `xke-helm-microservice-a/templates/deployment.yaml` pour passer à microservice une variable d'environnement `SERVICE_PORT`
 
 File `xke-helm-microservice-a/templates/deployment.yaml`
 
