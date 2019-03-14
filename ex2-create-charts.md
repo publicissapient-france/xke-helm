@@ -32,14 +32,13 @@ Le nouveau chart se présente sous la forme d'un répertoire avec une arborescen
 * Le tag de l'image Docker à utiliser est `xebiafrance/xke-helm-microservice-a:v1`
 * L'application expose le port `9081`
 
-Instructions:
-* Le template généré utilise une image Docker de nginx, expose le port `80` et déclare un endpoint de healthcheck sur `/` 
+### Instructions:
+* Le template généré utilise une image Docker de `nginx, expose le port `80` et déclare un endpoint de healthcheck sur `/` 
 _(voir `templates/deployment.yaml`, section `containers`)_
 * Modifier le fichier `values.yaml` 
     * section `image` - pointer sur l'image Docker de `Microservice A` (v1). 
     * section `service` - `type: NodePort` et `port: 9081`
-
-> _Note: Ne modifiez aucun fichier *SAUF* `values.yaml`_
+    * > _Note: Ne modifiez aucun fichier *SAUF* `values.yaml`_
     
 * Modifier le `deployment.yaml` pour inclure le healthcheck du chart
     * Compléter les sections `livenessProbe` et `readinessProbe`
