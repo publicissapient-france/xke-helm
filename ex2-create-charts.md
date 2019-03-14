@@ -15,11 +15,11 @@ Helm permet d'initialiser un nouveau chart selon un template standard.
 Le nouveau chart se présente sous la forme d'un répertoire avec une arborescence des fichiers précise.
 
 ### Instructions
-* Initialisez un nouveau chart nommé `microservice-a` avec la commande `helm create`
+* Initialisez un nouveau chart nommé `xke-helm-microservice-a` avec la commande `helm create`
 <details><summary>Solution</summary>
 <p>
 
-    $ helm create microservice-a
+    $ helm create xke-helm-microservice-a
 
 </p>
 </details>
@@ -33,11 +33,11 @@ Le nouveau chart se présente sous la forme d'un répertoire avec une arborescen
 * L'application expose le port `9081`
 
 Instructions:
-* Le template généré utilise une image Docker de nginx, expose le port `80` et déclare un endpoint de healthcheck sur `/`
-    * Voir `deployment.yaml`, section `containers`
+* Le template généré utilise une image Docker de nginx, expose le port `80` et déclare un endpoint de healthcheck sur `/` 
+_(voir `templates/deployment.yaml`, section `containers`)_
 * Modifier le fichier `values.yaml` 
-    * section `image:`, pointer sur l'image Docker de `Microservice A` (v1). 
-    * section `service:` (`type: NodePort` et `port: 9081`)
+    * section `image` - pointer sur l'image Docker de `Microservice A` (v1). 
+    * section `service` - `type: NodePort` et `port: 9081`
 
 > _Note: Ne modifiez aucun fichier *SAUF* `values.yaml`_
     
@@ -65,7 +65,7 @@ Instructions:
 <p>
 
     $ kubectl get services
-    $ kubectl port-forward svc/<service name>-microservice-a 9081:9081
+    $ kubectl port-forward svc/<service name>-xke-helm-microservice-a 9081:9081
     $ curl http://localhost:9081
 
 </p>

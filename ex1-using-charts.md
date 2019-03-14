@@ -59,7 +59,7 @@ Il s'agit souvent de "building blocks" que vous pouvez utiliser pour construire 
 </p>
 </details>    
     
-* Afficher les variables surchargées par votre release
+* Afficher les variables surchargées de votre release
 
 <details><summary>Solution</summary>
 <p>

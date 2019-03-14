@@ -15,7 +15,7 @@ Le but ici est de créer une "fonction" permettant de construire une variable `S
 <details><summary>Solution</summary>
 <p>
 
-File `microservice-a/values.yaml`
+File `xke-helm-microservice-a/values.yaml`
 
     ...
     
@@ -29,7 +29,7 @@ File `microservice-a/values.yaml`
 
 * Utiliser cette variable dans `templates/deployment.yaml` de `Microservice A` pour lui passer une variable d'environement `SERVICE_PORT`
 
-File `microservice-a/templates/deployment.yaml`
+File `xke-helm-microservice-a/templates/deployment.yaml`
 
     env:
       ...
@@ -52,7 +52,7 @@ File `xke-helm-parent/values.yaml`
 
     ...
     
-    microservice-a:
+    xke-helm-microservice-a:
       service:
         port: 9081
         
@@ -62,22 +62,22 @@ File `xke-helm-parent/values.yaml`
 </details>
  
 
-* Créer un partial (par ex `microservice-a.service.url`) dans `templates/_helpers.tpl` de chart de `Microservice B` permettant de construire le url vers `Microservice A`.  
+* Créer un partial (par ex `xke-helm-microservice-a.service.url`) dans `templates/_helpers.tpl` de chart de `Microservice B` permettant de construire le url vers `Microservice A`.  
 
 <details><summary>Solution</summary>
 <p>
 
-File `microservice-b/_helpers.tpl`
+File `xke-helm-microservice-b/_helpers.tpl`
 
     ...
     
     {{/*
       Defines the url of "Microservice A"
     */}}
-    {{- define "microservice-a.service.url" -}}
-        {{- $scheme := default "http" .Values.microservice-a.service.scheme -}}
-        {{- $host := printf "%s-%s" .Release.Name "microservice-a" -}}
-        {{- $port := default "9081" .Values.microservice-a.service.port -}}
+    {{- define "xke-helm-microservice-a.service.url" -}}
+        {{- $scheme := default "http" .Values.xke-helm-microservice-a.service.scheme -}}
+        {{- $host := printf "%s-%s" .Release.Name "xke-helm-microservice-a" -}}
+        {{- $port := default "9081" .Values.xke-helm-microservice-a.service.port -}}
         {{- printf "%s://%s:%s" $scheme $host $port | trunc 63 | trimSuffix "-" -}}
     {{- end -}}
 

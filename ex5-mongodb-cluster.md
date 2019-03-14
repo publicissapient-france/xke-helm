@@ -59,7 +59,7 @@ File `xke-helm-mongodb/values.yaml`
 <details><summary>Solution</summary>
 <p>
 
-File `microservice-a/deployment.yaml` et `microservice-b/deployment.yaml`
+File `xke-helm-microservice-a/templates/deployment.yaml` et `xke-helm-microservice-b/templates/deployment.yaml`
 
     env:
     
