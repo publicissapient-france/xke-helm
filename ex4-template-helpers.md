@@ -33,7 +33,6 @@ File `xke-helm-microservice-a/templates/deployment.yaml` et `xke-helm-microservi
 </p>
 </details>
 
-
 ## 2. Partial
 
 * Créer un partial (par ex `xke-helm-microservice-a.service.url`) dans `xke-helm-microservice-b/templates/_helpers.tpl` permettant de construire le url vers `Microservice A`.  
@@ -43,6 +42,7 @@ File `xke-helm-microservice-a/templates/deployment.yaml` et `xke-helm-microservi
 
 File `xke-helm-microservice-b/templates/_helpers.tpl`
 
+```yaml
     ...
     
     {{/*
@@ -55,6 +55,7 @@ File `xke-helm-microservice-b/templates/_helpers.tpl`
     {{- end -}}
 
     ...
+```
 
 </p>
 </details>
@@ -66,14 +67,13 @@ File `xke-helm-microservice-b/templates/_helpers.tpl`
 <details><summary>Solution</summary>
 <p>
 
-    $ helm package xke-helm-microservice-b
-    $ helm dep up xke-helm-parent
-    $ helm upgrade <relase name> xke-helm-parent
+```sh
+$ helm package xke-helm-microservice-b
+$ helm dep up xke-helm-parent
+$ helm upgrade <relase name> xke-helm-parent
+```
 
 </p>
 </details>
-
-
-
 
 [< Previous](ex3-parent-chart.md) | [Home](README.md) | [Next >](ex5-mongodb-cluster.md)

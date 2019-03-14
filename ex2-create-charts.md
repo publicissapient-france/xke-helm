@@ -33,7 +33,7 @@ Le nouveau chart se présente sous la forme d'un répertoire avec une arborescen
 * L'application expose le port `9081`
 
 ### Instructions :
-* Le template généré utilise une image Docker de `nginx, expose le port `80` et déclare un endpoint de healthcheck sur `/` 
+* Le template généré utilise une image Docker de `nginx`, expose le port `80` et déclare un endpoint de healthcheck sur `/` 
 _(voir `templates/deployment.yaml`, section `containers`)_
 * Modifier le fichier `values.yaml` 
     * section `image` - pointer sur l'image Docker de `Microservice A` (v1). 
@@ -51,9 +51,10 @@ _(voir `templates/deployment.yaml`, section `containers`)_
 <details><summary>Solution</summary>
 <p>
 
-    $ cd <chart directory>
-    $ helm install .
-
+```sh
+$ cd <chart directory>
+$ helm install .
+```
 </p>
 </details>
 
@@ -64,9 +65,11 @@ _(voir `templates/deployment.yaml`, section `containers`)_
 <details><summary>Solution</summary>
 <p>
 
-    $ kubectl get services
-    $ kubectl port-forward svc/<service name> 9081:9081
-    $ curl http://localhost:9081
+```sh
+$ kubectl get services
+$ kubectl port-forward svc/<service name> 9081:9081
+$ curl http://localhost:9081
+```
 
 </p>
 </details>
@@ -91,10 +94,12 @@ MONGODB_PORT
 
 Créer un fichier `requirements.yaml` à la racine du chart
 
+```yaml
     dependencies:
       - name: mongodb
         version: 5.9.0
         repository: https://kubernetes-charts.storage.googleapis.com/
+```
 
 </p>
 </details>
@@ -104,8 +109,10 @@ Créer un fichier `requirements.yaml` à la racine du chart
 <details><summary>Solution</summary>
 <p>
 
-    $ cd <chart directory>
-    $ helm dep update .
+```sh
+$ cd <chart directory>
+$ helm dep update .
+```
 
 </p>
 </details>
@@ -117,8 +124,10 @@ Créer un fichier `requirements.yaml` à la racine du chart
 
 Ajouter dans `values.yaml` :
 
+```yaml
     mongodb:
         usePassword: false
+```
 
 </p>
 </details>
@@ -132,6 +141,7 @@ Ajouter dans `values.yaml` :
 
 Ajouter dans `deployement.yaml` dans la section `spec.containers` :
 
+```yaml
     spec:
       containers:
         - name: {{ .Chart.Name }}
@@ -145,6 +155,7 @@ Ajouter dans `deployement.yaml` dans la section `spec.containers` :
               value: "{{- .Values.mongodb.service.port -}}"
               
         ...
+```
 
 </p>
 </details>
@@ -154,13 +165,14 @@ Ajouter dans `deployement.yaml` dans la section `spec.containers` :
 <details><summary>Solution</summary>
 <p>
 
-    $ cd <chart directory>
-    $ helm upgrade <relase name> .
+```sh
+$ cd <chart directory>
+$ helm upgrade <relase name> .
+```
 
 </p>
 </details>
 
 * Vérifier que la révision de votre release a été incrémentée 
-
 
 [< Previous](ex1-using-charts.md) | [Home](README.md) | [Next >](ex3-parent-chart.md)

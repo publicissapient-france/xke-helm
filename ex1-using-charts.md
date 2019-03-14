@@ -15,7 +15,9 @@ Il s'agit souvent de "building blocks" que vous pouvez utiliser pour construire 
 <details><summary>Solution</summary>
 <p>
 
-    $ helm status <release name>
+```sh
+$ helm status <release name>
+```
 
 </p>
 </details>
@@ -30,8 +32,10 @@ Il s'agit souvent de "building blocks" que vous pouvez utiliser pour construire 
 <details><summary>Solution</summary>
 <p>
 
-    $ helm ls --deployed
-    $ helm ls --deleted
+```sh
+$ helm ls --deployed
+$ helm ls --deleted
+```
 
 </p>
 </details>    
@@ -43,18 +47,21 @@ Il s'agit souvent de "building blocks" que vous pouvez utiliser pour construire 
 <details><summary>Solution</summary>
 <p>
 
-    $ helm inspect values stable/mongodb
+```sh
+$ helm inspect values stable/mongodb
+```
 
 </p>
 </details>
-
 
 * Installer le chart `mongodb` en personnalisant le MongoDB admin password
 
 <details><summary>Solution</summary>
 <p>
 
-    $ helm install --set mongodbRootPassword=test
+```sh
+$ helm install --set mongodbRootPassword=test
+```
 
 </p>
 </details>    
@@ -64,7 +71,9 @@ Il s'agit souvent de "building blocks" que vous pouvez utiliser pour construire 
 <details><summary>Solution</summary>
 <p>
 
-    $ helm get values <release name>
+```sh
+$ helm get values <release name>
+```
 
 </p>
 </details>

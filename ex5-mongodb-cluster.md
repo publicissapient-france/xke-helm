@@ -46,8 +46,10 @@ File `xke-helm-mongodb/values.yaml`
 
 File `xke-helm-mongodb/values.yaml`
 
-    $ cd <chart directory>
-    $ helm install . --name xke-mongodb
+```sh
+$ cd <chart directory>
+$ helm install . --name xke-mongodb
+```
 
 </p>
 </details>
@@ -63,6 +65,7 @@ File `xke-helm-mongodb/values.yaml`
 
 File `xke-helm-microservice-a/templates/deployment.yaml` et `xke-helm-microservice-b/templates/deployment.yaml`
 
+```yaml
     env:
     
       ...
@@ -75,6 +78,7 @@ File `xke-helm-microservice-a/templates/deployment.yaml` et `xke-helm-microservi
       {{- end }}
       
       ...
+```
 
 * Repackager er re-deployer
 
