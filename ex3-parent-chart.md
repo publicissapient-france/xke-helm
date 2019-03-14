@@ -69,22 +69,25 @@ Notre chart parent aura comme dépendances :
 * `Microservice A`
 * `Microservice B`
 
-Les dépendances de chart vont créer des pods correspondants avec les noms suivants le schèma : `<release-name>-<chart name>`.
+Les dépendances de chart vont créer des pods correspondants avec les noms suivants le schèma : "`<release-name>-<chart name>`".
 Etant donné que 2 charts de microservices tirent `mongodb` en dépendance, cela posera un problème de collesion des noms des resources Kubernetes.
-Le moyen simple de s'en sortir est de nommer les resources comme `mongodb-a` et `mongodb-b` respectivement dans les charts de `Microservice A et B` en utilisant `nameOverride` :    
+
+
+Le moyen simple de s'en sortir est de nommer les bases respectivement `mongodb-a` et `mongodb-b` dans les charts des `Microservice A et B` en utilisant `nameOverride` :    
 
 ```
 mongodb:
-  nameOverride: consent-mongodb
+  nameOverride: mongodb-a
   usePassword: false
 ``` 
 
 
 ### Instructions
 
-* Créer un nouveau chart avec `$ helm create xke-helm-parent`
+* Ajouter `mongodb.nameOverride: mongodb-a` et `mongodb.nameOverride: mongodb-b` dans les charts des `Microservice A et B`
+* Créer un nouveau chart parent avec `$ helm create xke-helm-parent`
 * Nous n'avons pas besoin de repertoire `/templates`
-* Définir toutes les dépendences 
+* Définir toutes les dépendances vers `Microservice A` et `Microservice B`
 
 <details><summary>Solution</summary>
 <p>
@@ -124,10 +127,10 @@ File `xke-helm-microservice-b/templates/deployment.yaml` :
 
 * N'oublier pas de le packager le `xke-helm-microservice-b` (`$ helm package .`) 
 * Mettre à jour les dépendances au niveau de chart parent (`$ helm dep update .`)  
-* Installer / Upgrader le release `xke-helm-parent`
+* Installer / Upgrader la release `xke-helm-parent`
 * Valider le fonctionnement (sur kubernetes dashboard par exemple)
 * Optional :
-    * Redimensionner les Microservices A et B pour en avoir 3 instances de chaqu'une
+    * Redimensionner les Microservices A et B pour en avoir 3 instances de chaqu'une (`replicaCount: 3`)
     * Ne toucher que values de chat parent
 
 
