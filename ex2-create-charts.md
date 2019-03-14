@@ -77,9 +77,10 @@ _(voir `templates/deployment.yaml`, section `containers`)_
 ### Détails :
 * La *v2* du `Microservice A` nécessite `mongodb`
 * Le `host` et `port` de mongodb sont injectés via les variables d'environnement :
+
 ```
-    MONGODB_HOST
-    MONGODB_PORT
+MONGODB_HOST
+MONGODB_PORT
 ```
 
 ### Instructions :

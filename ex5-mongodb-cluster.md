@@ -6,7 +6,7 @@ De la même manière, il n'est pas opportun que chaque microservice dispose de s
 
 Le but de cet exercice sera donc d'installer un unique cluster partagé entre les différents microservices.
 Nous commencerons par installer un cluster `mongodb` via son propre chart personnalisé puis nous ferons pointer les
-microservice A et B sur le cluster fraîchement déployé.
+microservices A et B sur le cluster fraîchement déployé.
 
 Notez que, au sein du cluster, il sera très important d'isoler les bases de dédiées à chacun des microservices.   
 
@@ -27,12 +27,14 @@ Notez que, au sein du cluster, il sera très important d'isoler les bases de dé
 
 File `xke-helm-mongodb/values.yaml`
 
+```yaml
     ...
     
     replicaSet:
       enabled: true
     
     ...
+```
 
 </p>
 </details>

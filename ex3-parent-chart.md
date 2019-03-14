@@ -33,7 +33,7 @@ SERVICE_A_URL : pour le moment laisser à localhost:9081
 
 ### Détails
 Helm se repose sur des `repositories` pour la distribution des charts.
-Pour servir des charts un serveur HTTP doit être capable de :
+Pour héberger des charts un serveur HTTP doit être capable de :
 * Servir des fichiers YAML et des archives tar
 * Accepter les requêtes GET
 
@@ -47,13 +47,15 @@ Pour le dévelopement en local Helm dispose d'un serveur interne (helm serve).
 <details><summary>Solution</summary>
 <p>
 
-    $ cd <chart directory>
-    $ helm package .
+```sh
+$ cd <chart directory>
+$ helm package .
+```
 
 </p>
 </details>
 
-* Vérifier que les `tgz` des charts sont présents dans `~/.helm/repository/local` (le répértoire utilisé par le `helm serve`)
+* Vérifier que les fichiers `*.tgz` des charts sont présents dans `~/.helm/repository/local` (le répértoire utilisé par le `helm serve`)
 
 
 ## 3. Créer le chart parent
@@ -69,31 +71,31 @@ Notre chart parent aura comme dépendances :
 * `Microservice A`
 * `Microservice B`
 
-Les dépendances de chart vont créer des pods correspondants avec les noms suivants le schèma : "`<release-name>-<chart name>`".
-Etant donné que 2 charts de microservices tirent `mongodb` en dépendance, cela posera un problème de collesion des noms des resources Kubernetes.
+Ces dépendances déclencheront la création de deux pods qui auront pour nom: "`<release-name>-<chart name>`".
+Etant donné que les 2 charts de microservices utilisent `mongodb` cela posera un problème de collision de nom entre les resources Kubernetes.
 
+Pour s'en sortir il suffira de nommer respectivement les bases `mongodb-a` et `mongodb-b` dans les charts des `Microservice A et B`.
+Cette surcharge se fera via la variable `nameOverride` :    
 
-Le moyen simple de s'en sortir est de nommer les bases respectivement `mongodb-a` et `mongodb-b` dans les charts des `Microservice A et B` en utilisant `nameOverride` :    
-
-```
+```yaml
 mongodb:
   nameOverride: mongodb-a
   usePassword: false
 ``` 
 
-
 ### Instructions
 
 * Ajouter `mongodb.nameOverride: mongodb-a` et `mongodb.nameOverride: mongodb-b` dans les charts des `Microservice A et B`
 * Créer un nouveau chart parent avec `$ helm create xke-helm-parent`
-* Nous n'avons pas besoin de repertoire `/templates`
+* Supprimer le répertoire `/templates` qui est inutile pour cet exercice
 * Définir toutes les dépendances vers `Microservice A` et `Microservice B`
 
 <details><summary>Solution</summary>
 <p>
 
-Créer `requirements.yaml` avec :
+Créer un fichier `requirements.yaml` contenant:
 
+```yaml
     dependencies:
       - name: xke-helm-microservice-a
         version: 0.1.0
@@ -101,6 +103,7 @@ Créer `requirements.yaml` avec :
       - name: xke-helm-microservice-b
         version: 0.1.0
         repository: http://127.0.0.1:8879/charts
+```
 
 </p>
 </details>
@@ -113,6 +116,7 @@ Créer `requirements.yaml` avec :
 
 File `xke-helm-microservice-b/templates/deployment.yaml` :
 
+```yaml
     env:
     
        ...
@@ -121,17 +125,18 @@ File `xke-helm-microservice-b/templates/deployment.yaml` :
          value: "{{- printf "http://%s-%s:9081" .Release.Name "xke-helm-microservice-a" | trunc 63 | trimSuffix "" -}}"
          
        ...
+```
 
 </p>
 </details>
 
-* N'oublier pas de le packager le `xke-helm-microservice-b` (`$ helm package .`) 
-* Mettre à jour les dépendances au niveau de chart parent (`$ helm dep update .`)  
-* Installer / Upgrader la release `xke-helm-parent`
-* Valider le fonctionnement (sur kubernetes dashboard par exemple)
+* N'oubliez pas de le packager le `xke-helm-microservice-b` (`$ helm package .`) 
+* Mettez à jour les dépendances au niveau de chart parent (`$ helm dep update .`)  
+* Installez / Upgradez la release `xke-helm-parent`
+* Validez le fonctionnement global (via le Kubernetes dashboard par exemple)
 * Optional :
-    * Redimensionner les `Microservices A et B` pour en avoir 3 instances de chaqu'une (`replicaCount: 3`)
-    * Ne toucher que values de chat parent
+    * Redimensionner les `Microservices A et B` pour disposer de 3 instances de chaque (`replicaCount: 3`)
+    * Modifiez uniquement le `values.yaml` du chart parent
 
 
 [< Previous](ex2-create-charts.md) | [Home](README.md) | [Next >](ex4-template-helpers.md)

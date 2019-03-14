@@ -18,6 +18,7 @@ Le but de cet exercice est de créer une code reutilisable permettant de constru
 
 File `xke-helm-microservice-a/templates/deployment.yaml`
 
+```yaml
     env:
       ...
     
@@ -25,6 +26,7 @@ File `xke-helm-microservice-a/templates/deployment.yaml`
         value: "{{- .Values.service.port -}}"
         
     ...
+```
 
 </p>
 </details>
@@ -37,6 +39,7 @@ File `xke-helm-microservice-a/templates/deployment.yaml`
 
 File `xke-helm-parent/values.yaml`
 
+```yaml
     ...
     
     xke-helm-microservice-a:
@@ -44,18 +47,21 @@ File `xke-helm-parent/values.yaml`
         port: 9081
         
     ...
+```
 
 </p>
 </details>
  
 
-* Créer un partial (par ex `xke-helm-microservice-a.service.url`) dans `templates/_helpers.tpl` de chart de `Microservice B` permettant de construire le url vers `Microservice A`.  
+* Créer un partial (par ex `xke-helm-microservice-a.service.url`) dans `templates/_helpers.tpl` du chart du `Microservice B` 
+* Ce partial construira l'url vers le `Microservice A`.  
 
 <details><summary>Solution</summary>
 <p>
 
 File `xke-helm-microservice-b/_helpers.tpl`
 
+```yaml
     ...
     
     {{/*
@@ -69,6 +75,7 @@ File `xke-helm-microservice-b/_helpers.tpl`
     {{- end -}}
 
     ...
+```
 
 </p>
 </details>
@@ -78,13 +85,12 @@ File `xke-helm-microservice-b/_helpers.tpl`
 <details><summary>Solution</summary>
 <p>
 
+```sh
     $ cd <chart directory>
     $ helm upgrade <relase name> .
+```
 
 </p>
 </details>
-
-
-
 
 [< Previous](ex3-parent-chart.md) | [Home](README.md) | [Next >](ex5-mongodb-cluster.md)
