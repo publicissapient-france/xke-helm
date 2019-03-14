@@ -4,7 +4,9 @@ Dans cet exercice nous allons créer et déployer un chart contenant notre premi
 La version `v1` de `Microservice A` ne dépend d'aucun autre service. 
 La version `v2` quant-à-elle, dépend de la base `mongodb` (et donc du chart du même nom).
 
-TODO: Photo
+<p>
+<img src="img/exo-2.png" height="300">
+</p>
 
 ## 1. Initialiser un chart
 
