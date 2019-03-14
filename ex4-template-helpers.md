@@ -13,6 +13,9 @@ Le but de cet exercice est de créer une code reutilisable permettant de constru
 * La variable helm `service.port` est déjà défini dans le `xke-helm-microservice-a/values.yaml`
 * Utiliser cette variable dans `xke-helm-microservice-a/templates/deployment.yaml` pour passer à microservice une variable d'environnement `SERVICE_PORT`
 
+<details><summary>Solution</summary>
+<p>
+
 File `xke-helm-microservice-a/templates/deployment.yaml`
 
     env:
