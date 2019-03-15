@@ -45,24 +45,42 @@ Fichiers `xke-helm-microservice-a/templates/deployment.yaml` et `xke-helm-micros
 Fichier `xke-helm-microservice-b/templates/_helpers.tpl`
 
 ```yaml
-    ...
-    
-    {{/*
-      Defines the url of "Microservice A"
-    */}}
-    {{- define "xke-helm-microservice-a.service.url" -}}
-        {{- $host := printf "%s-%s" .Release.Name "xke-helm-microservice-a" -}}
-        {{- $port := default "9081" .Values.microservice.a.port -}}
-        {{- printf "http://%s:%s" $host $port | trunc 63 | trimSuffix "-" -}}
-    {{- end -}}
+...
 
-    ...
+{{/*
+  Defines the url of "Microservice A"
+*/}}
+{{- define "xke-helm-microservice-a.service.url" -}}
+    {{- $host := printf "%s-%s" .Release.Name "xke-helm-microservice-a" -}}
+    {{- $port := default "9081" .Values.microservice.a.port -}}
+    {{- printf "http://%s:%s" $host $port | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
+...
+```
+
+Fichier `xke-helm-microservice-b/values.tpl`
+```yaml
+...
+microservice:
+  a:
+    port: 9081
+...
 ```
 
 </p>
 </details>
 
 * Utiliser ce partial dans `xke-helm-microservice-b/templates/deployment.yaml` à l'aide de la fonction `include`
+
+<details><summary>Solution</summary>
+<p>
+
+```yaml
+    value: {{ include "xke-helm-microservice-a.service.url" }}
+```
+</p>
+</details>
  
 * Packager le chart `xke-helm-microservice-b` et redéployer avec `$ helm upgrade`
 
