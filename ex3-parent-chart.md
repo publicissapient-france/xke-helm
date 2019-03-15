@@ -86,7 +86,7 @@ mongodb:
 ### Instructions
 
 * Ajouter `mongodb.nameOverride: mongodb-a` et `mongodb.nameOverride: mongodb-b` dans les charts des `Microservices A et B`
-* N'oublier pas d'adapter les variables `MONGODB_HOST` dans charts des `Microservices A et B`
+* N'oublier pas d'adapter les variables `MONGODB_HOST` dans les charts des `Microservices A et B`
 
 <details><summary>Solution</summary>
 <p>
