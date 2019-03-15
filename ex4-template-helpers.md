@@ -79,7 +79,7 @@ microservice:
 Fichier `xke-helm-microservice-b/templates/deployment.yaml`
 
 ```yaml
-    value: {{ include "xke-helm-microservice-a.service.url" }}
+    value: "{{ include "xke-helm-microservice-a.service.url" . }}"
 ```
 </p>
 </details>
