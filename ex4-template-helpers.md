@@ -76,6 +76,8 @@ microservice:
 <details><summary>Solution</summary>
 <p>
 
+Fichier `xke-helm-microservice-b/templates/deployment.yaml`
+
 ```yaml
     value: {{ include "xke-helm-microservice-a.service.url" }}
 ```
