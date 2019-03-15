@@ -79,6 +79,8 @@ Fichier `xke-helm-microservice-a/templates/deployment.yaml` et `xke-helm-microse
       
       ...
 ```
+</p>
+</details>
 
 * Repackager er re-deployer
 
