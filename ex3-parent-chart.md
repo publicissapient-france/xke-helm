@@ -154,7 +154,7 @@ Fichier `xke-helm-microservice-b/templates/deployment.yaml` :
 </p>
 </details>
 
-* N'oubliez pas de le packager le `xke-helm-microservice-b` (`$ helm package .`) 
+* N'oubliez pas de packager le `xke-helm-microservice-b` (`$ helm package .`) 
 * Mettez à jour les dépendances au niveau de chart parent (`$ helm dep update .`)  
 * Installez / Upgradez la release `xke-helm-parent`
 * Validez le fonctionnement global (via le Kubernetes dashboard par exemple)
