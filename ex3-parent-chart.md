@@ -133,7 +133,7 @@ Créer un fichier `requirements.yaml` contenant:
 </details>
 
 * A cette étape l'application ne marche toujours pas
-* Il faut modifier la variable d'environment `SERVICE_A_URL` qu'on a laissé à `localhost:9081` lors de l'étape précédente
+* Il faut modifier la variable d'environment `SERVICE_A_URL` qu'on a laissé à `localhost:9081` lors de l'étape précédente (Indice: Un DNS interne existe dans le kube)
 
 <details><summary>Solution</summary>
 <p>
