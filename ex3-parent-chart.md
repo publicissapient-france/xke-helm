@@ -74,8 +74,8 @@ Dans notre exemple le chart parent aura comme dépendances :
 Ces dépendances déclencheront la création de deux pods qui auront pour nom: "`<release-name>-<chart name>`".
 Etant donné que ces charts utilisent tout deux `mongodb` cela posera un problème de collision de nom entre les resources Kubernetes.
 
-Pour s'en sortir il faudra nommer respectivement les bases `mongodb-a` et `mongodb-b` dans les charts des `Microservice A et B`.
-Cette surcharge se fera via la variable `nameOverride` :    
+Pour s'en sortir il faudra nommer respectivement les bases `mongodb-a` et `mongodb-b` dans les charts des `Microservice A et B`
+Cette surcharge se fera via la clé `nameOverride` :    
 
 ```yaml
 mongodb:
@@ -86,6 +86,30 @@ mongodb:
 ### Instructions
 
 * Ajouter `mongodb.nameOverride: mongodb-a` et `mongodb.nameOverride: mongodb-b` dans les charts des `Microservices A et B`
+* N'oublier pas d'adapter les variables `MONGODB_HOST` dans charts des `Microservices A et B`
+
+<details><summary>Solution</summary>
+<p>
+
+Fichiers `xke-helm-microservice-a/templates/deployment.yaml` et `xke-helm-microservice-b/templates/deployment.yaml` :
+
+```yaml
+
+    # microservice-a
+    env:
+      - name: MONGODB_HOST
+        value: "{{- printf "%s-%s" .Release.Name "mongodb-a" | trunc 63 | trimSuffix "" -}}"
+
+    # microservice-b
+    env:
+      - name: MONGODB_HOST
+        value: "{{- printf "%s-%s" .Release.Name "mongodb-a" | trunc 63 | trimSuffix "" -}}"
+
+```
+
+</p>
+</details>
+
 * Créer un nouveau chart parent avec `$ helm create xke-helm-parent`
 * Supprimer le répertoire `/templates` qui n'est pas utile pour cet exercice
 * Définir les dépendances vers `Microservice A` et vers `Microservice B` dans le parent
