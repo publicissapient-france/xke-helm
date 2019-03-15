@@ -103,7 +103,7 @@ Fichiers `xke-helm-microservice-a/templates/deployment.yaml` et `xke-helm-micros
     # microservice-b
     env:
       - name: MONGODB_HOST
-        value: "{{- printf "%s-%s" .Release.Name "mongodb-a" | trunc 63 | trimSuffix "" -}}"
+        value: "{{- printf "%s-%s" .Release.Name "mongodb-b" | trunc 63 | trimSuffix "" -}}"
 
 ```
 

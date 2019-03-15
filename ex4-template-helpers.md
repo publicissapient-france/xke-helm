@@ -52,10 +52,9 @@ Fichier `xke-helm-microservice-b/templates/_helpers.tpl`
 */}}
 {{- define "xke-helm-microservice-a.service.url" -}}
     {{- $host := printf "%s-%s" .Release.Name "xke-helm-microservice-a" -}}
-    {{- $port := default "9081" .Values.microservice.a.port -}}
+    {{- $port := toString .Values.microservice.a.port -}}
     {{- printf "http://%s:%s" $host $port | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
-
 ...
 ```
 
