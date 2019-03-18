@@ -160,6 +160,6 @@ Fichier `xke-helm-microservice-b/templates/deployment.yaml` :
 * Validez le fonctionnement global (via le Kubernetes dashboard par exemple)
 * Optional :
     * Redimensionner les `Microservices A et B` pour disposer de 3 instances de chaque (`replicaCount: 3`)
-    * Modifiez uniquement le `values.yaml` du chart parent
+    * Modifiez uniquement le `values.yaml` du chart parent (Indice: vous aurez probablement besoin de savoir utiliser les [ancres YAML](https://helm.sh/docs/chart_template_guide/#yaml-anchors))
 
 [< Previous](ex2-create-charts.md) | [Home](README.md) | [Next >](ex4-template-helpers.md)
