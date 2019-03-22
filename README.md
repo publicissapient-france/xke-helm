@@ -3,9 +3,9 @@ A hands-on to play with [Helm](https://helm.sh)
 
 
 ## Documentation :
-* Presentation : TBD 
+* [Presentation](https://docs.google.com/presentation/d/1IAq22ouuvvlEetXkpGC5414TDBFsWviAWzlyODiFRCc/edit#slide=id.p) 
 * [Documentation Helm](https://helm.sh/docs/)
-* CheatSheet
+* [CheatSheet](https://gist.github.com/anshulpatel25/6ac7722a27d255f8ec40fba1b26635cb)
 
 ## Le deployment cible
 

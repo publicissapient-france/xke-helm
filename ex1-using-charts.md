@@ -81,4 +81,14 @@ $ helm get values <release name>
 * Vérifier dans le dashboard que le mot de passe a été changé
 * Supprimer la release 
 
+<details><summary>Solution</summary>
+<p>
+
+```sh
+$ helm delete <release name> --purge
+```
+
+</p>
+</details>
+
 [< Previous](README.md) | [Home](README.md) | [Next >](ex2-create-charts.md)
