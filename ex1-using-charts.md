@@ -22,7 +22,7 @@ $ helm status <release name>
 </p>
 </details>
 
-* Se connecter à la base mongo __(Indice: Voir la section NOTES de la commande précédente)__
+* Se connecter à la base mongo *(Indice: Voir la section NOTES de la commande précédente)*
 * Tester la connection avec `> show dbs`
 * Supprimer la release
 * Afficher dans le terminal les releases
