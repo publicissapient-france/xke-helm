@@ -20,7 +20,6 @@ Nous commencerons par installer un cluster `mongodb` via son propre chart person
 ### Instructions
 
 * Créer le nouveau chart `xke-helm-mongodb`
-* Supprimer les templates
 * Paramétrer le `values.yaml` pour passer le mongodb en mode replicaSet 
 
 <details><summary>Solution</summary>
@@ -56,7 +55,7 @@ $ helm install . --name xke-mongodb
 </details>
 
 * Adapter les charts de `Microservice A` et `Microservice B` pour pointer `MONGODB_HOST` vers le nouveau clusteur
-* Bonus: 
+* Bonus :
     * Définir une variable helm globale (par ex `mongodb.enabled = false`)
     * Utiliser `condition: mongodb.enabled` au niveau des `requirements.yaml` de 'Microservice A et B' pour éviter telecharger la dependance mongo 
     * Changer `MONGODB_HOST` dynamiquement
@@ -83,8 +82,8 @@ Fichier `xke-helm-microservice-a/templates/deployment.yaml` et `xke-helm-microse
 </p>
 </details>
 
-* Repackager er re-deployer
+* Repackager et re-deployer
 
-*Bravo ! Vous êtes arrivés à la fin de hands-on ! Felicitations !!!* 
+<h3>Bravo ! Vous êtes arrivés à la fin de hands-on ! Felicitations !!!</h3> 
 
 [< Previous](ex4-template-helpers.md) | [Home](README.md)
