@@ -9,7 +9,7 @@ Le but de cet exercice sera donc d'installer un unique cluster partagé entre le
 Nous commencerons par installer un cluster `mongodb` via son propre chart personnalisé puis nous ferons pointer les
 `Microservices A` et `B` sur le cluster fraîchement déployé.
 
-Notez que, au sein du cluster, il sera très important d'isoler les bases dédiées à chacun des microservices.   
+*Notez que, au sein du cluster, il sera très important d'isoler les bases dédiées à chacun des microservices.*   
 
 <p>
 <img src="img/exo5.png" height="450">
