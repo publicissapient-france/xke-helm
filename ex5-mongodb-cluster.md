@@ -5,10 +5,11 @@ Ces `mongodb` tournent en mono-instance ce qui n'est évidemment pas adapté dan
 De la même manière, il n'est pas opportun que chaque microservice dispose de son propre cluster.
 
 Le but de cet exercice sera donc d'installer un unique cluster partagé entre les différents microservices.
-Nous commencerons par installer un cluster `mongodb` via son propre chart personnalisé puis nous ferons pointer les
-microservices A et B sur le cluster fraîchement déployé.
 
-Notez que, au sein du cluster, il sera très important d'isoler les bases de dédiées à chacun des microservices.   
+Nous commencerons par installer un cluster `mongodb` via son propre chart personnalisé puis nous ferons pointer les
+`Microservices A` et `B` sur le cluster fraîchement déployé.
+
+Notez que, au sein du cluster, il sera très important d'isoler les bases dédiées à chacun des microservices.   
 
 <p>
 <img src="img/exo5.png" height="450">
