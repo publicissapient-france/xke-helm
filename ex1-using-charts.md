@@ -1,6 +1,6 @@
 # Exercice 1 - Utiliser les charts existants
 
-Le but de l'exercice est de se familiariser avec l'utilisation des charts.
+Le but de l'exercice est de se familiariser avec l'utilisation des **charts**.
 Il existe beaucoup de charts Helm tels que `mongodb`, `postgresql`, `wordpress` et bien d'autres encore.
 Il s'agit souvent de "building blocks" que vous pouvez utiliser pour construire vos propres charts.
 
