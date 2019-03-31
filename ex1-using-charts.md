@@ -42,6 +42,7 @@ $ helm delete <release name> --purge
 * Afficher dans le terminal les releases
     * Avec le statut DEPLOYED
     * Avec le statut DELETED
+    * Toutes les release
     
 <details><summary>Solution</summary>
 <p>
@@ -49,6 +50,7 @@ $ helm delete <release name> --purge
 ```sh
 $ helm ls --deployed
 $ helm ls --deleted
+$ helm ls --all
 ```
 
 </p>
@@ -56,7 +58,7 @@ $ helm ls --deleted
 
 ## 2. Personnaliser le chart `mongodb`
 
-* Afficher toutes les variables exposées par le chart `mongodb`
+* Afficher les variables exposées par le chart `mongodb`
 
 <details><summary>Solution</summary>
 <p>
@@ -68,7 +70,7 @@ $ helm inspect values stable/mongodb
 </p>
 </details>
 
-* Installer le chart `mongodb` en personnalisant le MongoDB admin password
+* Installer le chart `mongodb` en personnalisant le **MongoDB admin password**
 
 <details><summary>Solution</summary>
 <p>
@@ -80,6 +82,7 @@ $ helm install --set mongodbRootPassword=test
 </p>
 </details>    
     
+* Vérifier dans le dashboard que le mot de passe a été changé
 * Afficher les variables surchargées de votre release
 
 <details><summary>Solution</summary>
@@ -92,7 +95,6 @@ $ helm get values <release name>
 </p>
 </details>
 
-* Vérifier dans le dashboard que le mot de passe a été changé
 * Supprimer la release 
 
 <details><summary>Solution</summary>
