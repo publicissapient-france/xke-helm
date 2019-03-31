@@ -2,7 +2,7 @@
 
 Le but de l'exercice est de se familiariser avec l'utilisation des **charts**.
 Il existe beaucoup de charts Helm tels que `mongodb`, `postgresql`, `wordpress` et bien d'autres encore.
-Il s'agit souvent de "building blocks" que vous pouvez utiliser pour construire vos propres charts.
+Il s'agit souvent de **building blocks** que vous pouvez utiliser pour construire vos propres charts.
 
 ## 1. Installer `mongodb`
 
@@ -22,7 +22,7 @@ $ helm status <release name>
 </p>
 </details>
 
-* Se connecter à la base mongo (Indice: Voir la section NOTES de la commande précédente)
+* Se connecter à la base mongo __(Indice: Voir la section NOTES de la commande précédente)__
 * Tester la connection avec `> show dbs`
 * Supprimer la release
 * Afficher dans le terminal les releases
