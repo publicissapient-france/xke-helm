@@ -37,8 +37,8 @@ SERVICE_A_URL : pour le moment laisser à localhost:9081
 ### Détails
 Helm se repose sur des `repositories` pour la distribution des charts.
 Pour héberger des charts un serveur HTTP doit être capable :
-* D'accepter les requêtes GET
-* De servir des fichiers YAML et des archives tar
+* D'accepter les requêtes `GET`
+* De servir des fichiers YAML et des archives `tar`
 
 Pour le dévelopement en local Helm dispose d'un serveur interne (`$ helm serve`). 
 
@@ -58,27 +58,25 @@ $ helm package .
 </p>
 </details>
 
-* Vérifier que les fichiers `*.tgz` des charts sont présents dans `~/.helm/repository/local` (le répértoire utilisé par le `helm serve`)
+* Vérifier que les fichiers `*.tgz` des charts sont présents dans `~/.helm/repository/local` (le répértoire utilisé par défaut par le `helm serve`)
 
 
 ## 3. Créer le chart parent
  
 ### Détails
-Ce chart parent représentera notre application dans son ensemble. 
-La méthode conseillée pour packager une application complexe consiste à créer un chart parent qui regroupera tous les autres charts dont vous aurez besoin. 
-Ce chart parent exposera les configurations sous forme de variables globales.
-On placera ensuite les subcharts dans le répertoire `charts/`.
+Ce chart parent représentera notre **application** dans son ensemble. 
+La méthode conseillée pour packager une application complexe consiste à créer un chart parent qui regroupera tous les autres charts dont vous aurez besoin.
 
 Dans notre exemple le chart parent aura comme dépendances :
 
 * `Microservice A`
 * `Microservice B`
 
-Ces dépendances déclencheront la création de deux pods qui auront pour nom: "`<release-name>-<chart name>`".
+Ces dépendances déclencheront la création de deux pods qui auront pour nom: `<release-name>-<chart name>`.
 Etant donné que ces charts utilisent tout deux `mongodb` cela posera un problème de collision de nom entre les resources Kubernetes.
 
 Pour s'en sortir il faudra nommer respectivement les bases `mongodb-a` et `mongodb-b` dans les charts des `Microservice A et B`
-Cette surcharge se fera via la clé `nameOverride` :    
+Cette surcharge se fera via la clé `nameOverride` dans les fichiers `values.yaml` :    
 
 ```yaml
 mongodb:
@@ -88,7 +86,7 @@ mongodb:
 
 ### Instructions
 
-* Ajouter `mongodb.nameOverride: mongodb-a` et `mongodb.nameOverride: mongodb-b` dans les charts des `Microservices A et B`
+* Ajouter `mongodb.nameOverride: mongodb-a` et `mongodb.nameOverride: mongodb-b` dans les charts des `Microservices A et B` respectivement
 * N'oublier pas d'adapter les variables `MONGODB_HOST` dans les charts des `Microservices A et B`
 
 <details><summary>Solution</summary>
@@ -136,7 +134,7 @@ Créer un fichier `requirements.yaml` contenant:
 </details>
 
 * A cette étape l'application ne marche toujours pas
-* Il faut modifier la variable d'environment `SERVICE_A_URL` qu'on a laissé à `localhost:9081` lors de l'étape précédente (Indice: Un DNS interne existe dans le kube)
+* Il faut modifier la variable d'environment `SERVICE_A_URL` qu'on a laissé à `localhost:9081` lors de l'étape précédente
 
 <details><summary>Solution</summary>
 <p>
@@ -157,12 +155,12 @@ Fichier `xke-helm-microservice-b/templates/deployment.yaml` :
 </p>
 </details>
 
-* N'oubliez pas de packager le `xke-helm-microservice-b` (`$ helm package .`) 
-* Mettez à jour les dépendances au niveau de chart parent (`$ helm dep update .`)  
-* Installez / Upgradez la release `xke-helm-parent`
-* Validez le fonctionnement global (via le Kubernetes dashboard par exemple)
+* N'oublier pas de packager le `xke-helm-microservice-b` (`$ helm package .`) 
+* Mettre à jour les dépendances au niveau de chart parent (`$ helm dep update .`)  
+* Installer / Upgrader la release `xke-helm-parent`
+* Valider le fonctionnement global (via le Kubernetes dashboard par exemple)
 * Optional :
     * Redimensionner les `Microservices A et B` pour disposer de 3 instances de chaque (`replicaCount: 3`)
-    * Modifiez uniquement le `values.yaml` du chart parent (Indice: vous aurez probablement besoin de savoir utiliser les [ancres YAML](https://helm.sh/docs/chart_template_guide/#yaml-anchors))
+    * Modifier uniquement le `values.yaml` du chart parent (Indice: vous aurez probablement besoin de savoir utiliser les [ancres YAML](https://helm.sh/docs/chart_template_guide/#yaml-anchors))
 
 [< Previous](ex2-create-charts.md) | [Home](README.md) | [Next >](ex4-template-helpers.md)
