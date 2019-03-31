@@ -21,7 +21,7 @@ Activer le kubernetes dans "docker for mac" :
 <img src="img/kube-for-mac.png" height="200">
 </p>
 
-**Linux**
+**Linux (ubuntu)**
 
 Install [minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
 
@@ -73,7 +73,7 @@ $ brew update
 $ brew install kubernetes-helm
 ```
 
-**Linux**
+**Linux (ubuntu)**
 
 Voir [the installation guide](https://helm.sh/docs/using_helm/#installing-helm)
 
