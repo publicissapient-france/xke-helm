@@ -160,7 +160,7 @@ Fichier `xke-helm-microservice-b/templates/deployment.yaml` :
 * Installer / Upgrader la release `xke-helm-parent`
 * Valider le fonctionnement global (via le Kubernetes dashboard par exemple)
 * Optional :
-    * Redimensionner les `Microservices A et B` pour disposer de 3 instances de chaque (`replicaCount: 3`)
-    * Modifier uniquement le `values.yaml` du chart parent
+    1. Redimensionner les `Microservices A et B` pour disposer de 3 instances de chaque (`replicaCount: 3`). *Ne modifier que le `values.yaml` du chart parent*
+    2. Le port de `Microservice A` est defini 2 fois. Pour en débarasser, vous aurez probablement besoin d'utiliser les [ancres YAML](https://helm.sh/docs/chart_template_guide/#yaml-anchors)
 
 [< Previous](ex2-create-charts.md) | [Home](README.md) | [Next >](ex4-template-helpers.md)
