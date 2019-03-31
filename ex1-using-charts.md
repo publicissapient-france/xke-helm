@@ -25,6 +25,20 @@ $ helm status <release name>
 * Se connecter à la base mongo *(Indice: Voir la section NOTES de la commande précédente)*
 * Tester la connection avec `> show dbs`
 * Supprimer la release
+
+<details><summary>Solution</summary>
+<p>
+
+```sh
+$ helm delete <release name> --purge
+```
+
+*Note: `--purge` permet de retirer la release du store et rendre son nom disponible pour une utilisation ultérieure*
+
+</p>
+</details>
+
+
 * Afficher dans le terminal les releases
     * Avec le statut DEPLOYED
     * Avec le statut DELETED
