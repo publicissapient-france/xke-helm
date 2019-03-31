@@ -23,7 +23,7 @@ Le nouveau chart se présente sous la forme d'un répertoire avec une arborescen
 
 ## 2. Microservice A (v1)
 
-### Détails :
+### Détails
 
 * Le `Microservice A` (v1) n'a aucune dépendance
 * Le tag de l'image Docker à utiliser est `xebiafrance/xke-helm-microservice-a:v1`
@@ -33,7 +33,7 @@ Le nouveau chart se présente sous la forme d'un répertoire avec une arborescen
 <img src="img/exo2-v1.png" wigth="200">
 </p>
 
-### Instructions :
+### Instructions
 * Le template généré utilise une image Docker de `nginx`, expose le port `80` et déclare un endpoint de healthcheck sur `/` 
 (voir `templates/deployment.yaml`, section `containers`)
 * Modifier le fichier `values.yaml` 
@@ -78,7 +78,7 @@ $ curl http://localhost:9081
     
 ## 3. Microservice A (v2)
 
-### Détails :
+### Détails
 * La **v2** du `Microservice A` nécessite `mongodb`
 * Le `host` et le `port` de mongodb sont injectés via les variables d'environnement :
 
@@ -91,7 +91,7 @@ MONGODB_PORT
 <img src="img/exo2-v2.png" wigth="200">
 </p>
 
-### Instructions :
+### Instructions
 * Ajouter une dépendance au chart de mongodb (`stable/mongodb:5.9.0`)
 
 <details><summary>Solution</summary>

@@ -11,7 +11,7 @@ Pour cela il faudra créer un chart parent qui aura les charts du `Microservice 
 
 ## 1. Créer le chart pour `Microservice B`
 
-### Détails :
+### Détails
 * Le `Microservice B` communique avec le `Microservice A` via HTTP
 * Le healthcheck du `Microservice B` vérifie qu'il a accès à `mongodb` et au `Microservice A`
 * Le `Microservice B` est exposé sur le ` `9082
@@ -29,18 +29,18 @@ SERVICE_A_URL : pour le moment laisser à localhost:9081
 * N'oubliez pas de renseigner le service `port` à `9082`
 * Laisser la variable `SERVICE_A_URL` à `localhost:9081` pour le moment
 * Déployer la release
-* Vérifier que le `healthcheck` échoue sytématiquement
+* Vérifier que le `healthcheck` échoue sytématiquement (car il n'arrive pas à atteindre le `Microservice A`)
 * Supprimer la release
 
 ## 2. Distribuer les charts
 
 ### Détails
 Helm se repose sur des `repositories` pour la distribution des charts.
-Pour héberger des charts un serveur HTTP doit être capable de :
+Pour héberger des charts un serveur HTTP doit être capable :
 * D'accepter les requêtes GET
 * De servir des fichiers YAML et des archives tar
 
-Pour le dévelopement en local Helm dispose d'un serveur interne (helm serve). 
+Pour le dévelopement en local Helm dispose d'un serveur interne (`$ helm serve`). 
 
 ### Instructions
 

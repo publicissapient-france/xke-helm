@@ -5,11 +5,11 @@ Le but de cet exercice sera de créer une code réutilisable permettant de const
 
 ## 1. (Optionel) Service Port
 
-### Détails :
+### Détails
 
 * Dans les fichiers `deployment.yaml` des charts `xke-helm-microservice-a` et `xke-helm-microservice-b`   
 
-### Instructions :
+### Instructions
 * La variable helm `service.port` est déjà définie à deux endroits
     * `xke-helm-microservice-a/values.yaml` 
     * `xke-helm-microservice-b/values.yaml`
