@@ -1,5 +1,5 @@
 # XKE HELM
-A hands-on to play with [Helm](https://helm.sh)
+A hands-on sur [Helm](https://helm.sh)
 
 
 ## Documentation :
