@@ -6,10 +6,6 @@ La version `v2` quant-à-elle, dépend de la base `mongodb` (et donc du chart du
 
 ## 1. Initialiser un chart
 
-<p>
-<img src="img/exo2-v1.png" wigth="200">
-</p>
-
 ### Détails
 Helm permet d'initialiser un nouveau chart selon un template standard.
 Le nouveau chart se présente sous la forme d'un répertoire avec une arborescence des fichiers précise.
@@ -27,14 +23,15 @@ Le nouveau chart se présente sous la forme d'un répertoire avec une arborescen
 
 ## 2. Microservice A (v1)
 
-<p>
-<img src="img/exo2-v2.png" wigth="200">
-</p>
-
 ### Détails :
+
 * Le `Microservice A` (v1) n'a aucune dépendance
 * Le tag de l'image Docker à utiliser est `xebiafrance/xke-helm-microservice-a:v1`
 * L'application est exposée sur le port `9081`
+
+<p>
+<img src="img/exo2-v1.png" wigth="200">
+</p>
 
 ### Instructions :
 * Le template généré utilise une image Docker de `nginx`, expose le port `80` et déclare un endpoint de healthcheck sur `/` 
@@ -89,6 +86,10 @@ $ curl http://localhost:9081
 MONGODB_HOST
 MONGODB_PORT
 ```
+
+<p>
+<img src="img/exo2-v2.png" wigth="200">
+</p>
 
 ### Instructions :
 * Ajouter une dépendance au chart de mongodb (`stable/mongodb:5.9.0`)
