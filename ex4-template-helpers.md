@@ -10,7 +10,7 @@ Le but de cet exercice sera de créer une code réutilisable permettant de const
 * Dans les fichiers `deployment.yaml` des charts `xke-helm-microservice-a` et `xke-helm-microservice-b`   
 
 ### Instructions
-* La variable helm `service.port` est déjà définie à deux endroits
+* La variable helm `service.port` est définie à deux endroits
     * `xke-helm-microservice-a/values.yaml` 
     * `xke-helm-microservice-b/values.yaml`
 * Utiliser cette variable dans `xke-helm-microservice-a/templates/deployment.yaml` pour remplacer la valeur en dur de `spec.containers.containerPort`

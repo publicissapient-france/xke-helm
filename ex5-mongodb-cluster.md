@@ -11,7 +11,7 @@ microservices A et B sur le cluster fraîchement déployé.
 Notez que, au sein du cluster, il sera très important d'isoler les bases de dédiées à chacun des microservices.   
 
 <p>
-<img src="img/target-architecture.png" height="300">
+<img src="img/exo5.png" height="450">
 </p>
 
 ## 1. Clusteur mongodb
