@@ -79,7 +79,7 @@ $ curl http://localhost:9081
 ## 3. Microservice A (v2)
 
 ### Détails :
-* La *v2* du `Microservice A` nécessite `mongodb`
+* La **v2** du `Microservice A` nécessite `mongodb`
 * Le `host` et le `port` de mongodb sont injectés via les variables d'environnement :
 
 ```

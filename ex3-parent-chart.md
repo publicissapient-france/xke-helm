@@ -4,7 +4,10 @@ Dans cet exercice nous allons créer le chart du `Microservice B`.
 Ce microservice communique avec le `Microservice A` via HTTP.
 Pour cela il faudra créer un chart parent qui aura les charts du `Microservice A` et du `Microservice B` comme dépendances.
 
-TODO: Photo
+<p>
+<img src="img/exo3.png" wigth="600">
+</p>
+
 
 ## 1. Créer le chart pour `Microservice B`
 
