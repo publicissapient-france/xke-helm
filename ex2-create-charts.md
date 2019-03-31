@@ -4,11 +4,11 @@ Dans cet exercice nous allons créer et déployer un chart contenant notre premi
 La version `v1` de `Microservice A` ne dépend d'aucun autre service. 
 La version `v2` quant-à-elle, dépend de la base `mongodb` (et donc du chart du même nom).
 
-<p>
-<img src="img/exo-2.png" height="300">
-</p>
-
 ## 1. Initialiser un chart
+
+<p>
+<img src="img/exo2-v1.png" wigth="200">
+</p>
 
 ### Détails
 Helm permet d'initialiser un nouveau chart selon un template standard.
@@ -26,6 +26,10 @@ Le nouveau chart se présente sous la forme d'un répertoire avec une arborescen
 
 
 ## 2. Microservice A (v1)
+
+<p>
+<img src="img/exo2-v2.png" wigth="200">
+</p>
 
 ### Détails :
 * Le `Microservice A` (v1) n'a aucune dépendance
