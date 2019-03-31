@@ -73,7 +73,7 @@ $ brew update
 $ brew install kubernetes-helm
 ```
 
-**Unix**
+**Linux**
 
 Voir [the installation guide](https://helm.sh/docs/using_helm/#installing-helm)
 
